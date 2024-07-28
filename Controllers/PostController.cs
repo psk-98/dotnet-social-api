@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SocialApi.Data;
 using SocialApi.Models;
 
 namespace SocialApi.Controllers
@@ -13,25 +14,25 @@ namespace SocialApi.Controllers
     [ApiController]
     public class PostController : ControllerBase
     {
-        private readonly PostContext _context;
+        private readonly SocialContext _context;
 
-        public PostController(PostContext context)
+        public PostController(SocialContext context)
         {
             _context = context;
         }
 
         // GET: api/Post
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Post>>> GetPost()
+        public async Task<ActionResult<IEnumerable<Post>>> GetPosts()
         {
-            return await _context.Post.ToListAsync();
+            return await _context.Posts.ToListAsync();
         }
 
         // GET: api/Post/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Post>> GetPost(int id)
         {
-            var post = await _context.Post.FindAsync(id);
+            var post = await _context.Posts.FindAsync(id);
 
             if (post == null)
             {
@@ -77,36 +78,23 @@ namespace SocialApi.Controllers
         [HttpPost]
         public async Task<ActionResult<Post>> PostPost(Post post)
         {
-
-            var _post = new Post {
-                Id = post.Id,
-                Author = post.Author, 
-                Body=post.Body , 
-                Created=DateTimeOffset.Now
-            };
-
-
-            _context.Post.Add(_post);
+            _context.Posts.Add(post);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetPost", new { id = post.Id }, _post);
+            return CreatedAtAction("GetPost", new { id = post.Id }, post);
         }
-
-
-  
-
 
         // DELETE: api/Post/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePost(int id)
         {
-            var post = await _context.Post.FindAsync(id);
+            var post = await _context.Posts.FindAsync(id);
             if (post == null)
             {
                 return NotFound();
             }
 
-            _context.Post.Remove(post);
+            _context.Posts.Remove(post);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -114,7 +102,7 @@ namespace SocialApi.Controllers
 
         private bool PostExists(int id)
         {
-            return _context.Post.Any(e => e.Id == id);
+            return _context.Posts.Any(e => e.Id == id);
         }
     }
 }

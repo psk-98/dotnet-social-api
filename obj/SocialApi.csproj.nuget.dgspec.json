@@ -1,25 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "/Users/paulkhoza/Documents/web-dev/SocialApi/SocialApi.csproj": {}
+    "/home/omen/Documents/dotnet-social-api/SocialApi.csproj": {}
   },
   "projects": {
-    "/Users/paulkhoza/Documents/web-dev/SocialApi/SocialApi.csproj": {
+    "/home/omen/Documents/dotnet-social-api/SocialApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/paulkhoza/Documents/web-dev/SocialApi/SocialApi.csproj",
+        "projectUniqueName": "/home/omen/Documents/dotnet-social-api/SocialApi.csproj",
         "projectName": "SocialApi",
-        "projectPath": "/Users/paulkhoza/Documents/web-dev/SocialApi/SocialApi.csproj",
-        "packagesPath": "/Users/paulkhoza/.nuget/packages/",
-        "outputPath": "/Users/paulkhoza/Documents/web-dev/SocialApi/obj/",
+        "projectPath": "/home/omen/Documents/dotnet-social-api/SocialApi.csproj",
+        "packagesPath": "/home/omen/.nuget/packages/",
+        "outputPath": "/home/omen/Documents/dotnet-social-api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/paulkhoza/.nuget/NuGet/NuGet.Config"
+          "/home/omen/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "/home/omen/Documents/.net-microservice-course/packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -32,17 +33,16 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.7, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -54,6 +54,10 @@
               "version": "[8.0.7, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[8.0.7, )"
             },
@@ -91,7 +95,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.303/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.107/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
