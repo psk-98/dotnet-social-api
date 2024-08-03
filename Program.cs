@@ -1,6 +1,8 @@
 using System.Text;
 using dotnet_social_api.Data;
+using dotnet_social_api.Interface;
 using dotnet_social_api.Models;
+using dotnet_social_api.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -81,6 +83,9 @@ builder.Services.AddAuthentication(options =>
         };
     });
 
+builder.Services.AddScoped<ITokenService, TokenService>();
+
+
 
 var app = builder.Build();
 
@@ -92,6 +97,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.MapControllers();
 
 app.Run();
 

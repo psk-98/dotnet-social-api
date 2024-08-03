@@ -7,6 +7,7 @@ namespace dotnet_social_api.Models
 {
     public class Notification
     {
+        public int Id { get; set; }
 
     }
 }
