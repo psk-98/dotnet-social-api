@@ -1,8 +1,8 @@
 {
   "Version": 1,
-  "Hash": "7as8gZdB/MPORia2CPRZhMRdZGM2bQIHAtP0YiA52N4=",
-  "Source": "SocialApi",
-  "BasePath": "_content/SocialApi",
+  "Hash": "ZWpVnFmn+3dmkXTNSPS+o6OUJHf45dsGTpPeC/TcEXM=",
+  "Source": "dotnet-social-api",
+  "BasePath": "_content/dotnet-social-api",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
