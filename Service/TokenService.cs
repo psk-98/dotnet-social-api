@@ -25,7 +25,7 @@ namespace dotnet_social_api.Service
         public string CreateToken(UserProfile user)
         {
             var claims = new List<Claim>{
-                new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                // new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim(JwtRegisteredClaimNames.GivenName, user.UserName)
             };
 

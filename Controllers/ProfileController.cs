@@ -67,4 +67,24 @@ public class ProfileController : ControllerBase
 
         }
     }
+
+    [HttpPost("login")]
+    public async Task<IActionResult> Login(LoginDto loginDto)
+    {
+        if (!ModelState.IsValid) return BadRequest(ModelState);
+        var user = await _userManager.Users.FirstOrDefaultAsync(u => u.UserName.ToLower() == loginDto.UserName.ToLower());
+
+        if (user == null) return Unauthorized("Invalid username or password");
+
+        var result = await _signInManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
+
+        if (!result.Succeeded) return Unauthorized("Invalid username or password");
+
+        return Ok(new NewProfileDto
+        {
+            Username = user.UserName,
+            Email = user.Email,
+            Token = _tokenService.CreateToken(user)
+        });
+    }
 }
