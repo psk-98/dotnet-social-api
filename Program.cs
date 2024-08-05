@@ -2,6 +2,7 @@ using System.Text;
 using dotnet_social_api.Data;
 using dotnet_social_api.Interface;
 using dotnet_social_api.Models;
+using dotnet_social_api.Repository;
 using dotnet_social_api.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -83,6 +84,9 @@ builder.Services.AddAuthentication(options =>
         };
     });
 
+builder.Services.AddScoped<IPostRepository, PostRepository>();
+builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
+builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 
 
