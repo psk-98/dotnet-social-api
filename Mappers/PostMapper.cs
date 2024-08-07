@@ -27,4 +27,12 @@ public static class PostMapper
             Body = postDto.Body
         };
     }
+
+    public static Post ToPostFromUpdate(this UpdatePostDto postDto)
+    {
+        return new Post
+        {
+            Body = postDto.Body
+        };
+    }
 }

@@ -63,4 +63,31 @@ public class PostController : ControllerBase
 
         return CreatedAtAction(nameof(GetById), new { id = postModel.Id }, postModel.ToPostDto());
     }
+
+    [HttpPut]
+    [Route("{id:int}")]
+    public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdatePostDto updateDto)
+    {
+        if (!ModelState.IsValid) return BadRequest(ModelState);
+
+        var postModel = await _postRepo.UpdateAsync(id, updateDto.ToPostFromUpdate());
+
+        if (postModel == null) return NotFound("Post not found");
+
+        return Ok(postModel.ToPostDto());
+    }
+
+    [HttpDelete]
+    [Route("{id:int}")]
+    public async Task<IActionResult> Delete([FromRoute] int id)
+    {
+        if (!ModelState.IsValid) return BadRequest(ModelState);
+
+        var postModel = await _postRepo.DeleteAsync(id);
+
+        if (postModel == null) return NotFound("Post does not exist");
+
+        return Ok(postModel);
+
+    }
 }

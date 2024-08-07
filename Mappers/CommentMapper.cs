@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using api.Dtos.Comment;
 using dotnet_social_api.Dto.Comment;
 using dotnet_social_api.Models;
 
@@ -28,6 +29,14 @@ public static class CommentMapper
             CreatedOn = commentModel.CreatedOn,
             CreatedBy = commentModel.UserProfile.UserName,
             PostId = commentModel.PostId
+        };
+    }
+
+    public static Comment ToCommentFromUpdate(this UpdateCommentRequestDto commentDto)
+    {
+        return new Comment
+        {
+            Body = commentDto.Body,
         };
     }
 }

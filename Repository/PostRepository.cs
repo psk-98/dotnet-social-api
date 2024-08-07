@@ -24,6 +24,19 @@ public class PostRepository : IPostRepository
         return postModel;
     }
 
+    public async Task<Post> DeleteAsync(int id)
+    {
+        var postModel = await _context.Posts.FirstOrDefaultAsync(p => p.Id == id);
+
+        if (postModel == null) return null;
+
+        _context.Posts.Remove(postModel);
+        await _context.SaveChangesAsync();
+
+        return postModel;
+
+    }
+
     public async Task<List<Post>> GetAllAsync()
     {
         return await _context.Posts.Include(p => p.UserProfile).ToListAsync();
@@ -37,5 +50,18 @@ public class PostRepository : IPostRepository
     public Task<bool> PostExists(int id)
     {
         return _context.Posts.AnyAsync(s => s.Id == id);
+    }
+
+    public async Task<Post> UpdateAsync(int id, Post postModel)
+    {
+        var existingPost = await _context.Posts.FindAsync(id);
+
+        if (existingPost == null) return null;
+
+        existingPost.Body = postModel.Body;
+
+        await _context.SaveChangesAsync();
+
+        return existingPost;
     }
 }
