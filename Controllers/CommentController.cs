@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using api.Dtos.Comment;
 using dotnet_social_api.Dto.Comment;
+using dotnet_social_api.Dto.Notification;
 using dotnet_social_api.Extensions;
 using dotnet_social_api.Interface;
 using dotnet_social_api.Mappers;
@@ -32,7 +33,7 @@ public class CommentController : ControllerBase
 
     [HttpPost("{postId:int}")]
     [Authorize]
-    public async Task<IActionResult> Create([FromRoute] int postId, CreateCommentDto commentDto)
+    public async Task<IActionResult> Create([FromRoute] int postId, CreateCommentDto commentDto, CreateNotifactionDto notifactionDto)
     {
         if (!ModelState.IsValid) return BadRequest(ModelState);
 
@@ -44,7 +45,7 @@ public class CommentController : ControllerBase
         var commentModel = commentDto.ToCommentFromCreate(postId, userProfile.Id);
         await _commentRepo.CreateAsync(commentModel);
 
-        // remember to create a notification when a comment is created
+        var notificationModel = notifactionDto.ToNotificationFromCreate(type, toUserProfile, userProfile.Id)
 
         return CreatedAtAction(nameof(GetById), new { id = commentModel.Id }, commentModel.ToCommentDto());
     }

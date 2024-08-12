@@ -11,5 +11,6 @@ namespace dotnet_social_api.Dto.Notification
         public NotificationType Type { get; set; }
         public string ToUserProfileId { get; set; }
         public string FromUserProfileId { get; set; }
+
     }
 }
