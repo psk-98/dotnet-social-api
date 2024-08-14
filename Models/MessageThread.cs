@@ -9,5 +9,6 @@ namespace dotnet_social_api.Models
     {
         public int Id { get; set; }
 
+
     }
 }

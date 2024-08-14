@@ -13,7 +13,6 @@ namespace dotnet_social_api.Interface
         Task<Post> CreateAsync(Post postModel);
         Task<Post> UpdateAsync(int id, Post postModel);
         Task<Post> DeleteAsync(int id);
-
         Task<bool> PostExists(int id);
     }
 }

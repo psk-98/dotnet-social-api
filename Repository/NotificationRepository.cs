@@ -6,6 +6,7 @@ using dotnet_social_api.Data;
 using dotnet_social_api.Interface;
 using dotnet_social_api.Models;
 using dotnet_social_api.Models.Enums;
+using Microsoft.EntityFrameworkCore;
 
 namespace dotnet_social_api.Repository;
 
@@ -24,5 +25,10 @@ public class NotificationRepository : INotificationRepository
         await _context.SaveChangesAsync();
 
         return notificationModel;
+    }
+
+    public async Task<List<Notification>> GetAllAsync()
+    {
+        return await _context.Notifications.ToListAsync();
     }
 }

@@ -11,10 +11,10 @@ namespace dotnet_social_api.Models
         public int Id { get; set; }
         public NotificationType Type { get; set; }
         public DateTime CreatedOn { get; set; } = DateTime.Now;
-        public bool HasBeenSeen { get; set; } = false;
-        public string ToUserProfileId { get; set; }
-        public string FromUserProfileId { get; set; }
-        public UserProfile ToUserProfile { get; set; }
-        public UserProfile FromUserProfile { get; set; }
+        public bool IsSeen { get; set; } = false;
+        public string ToUserProfileId { get; set; } = string.Empty;
+        public string FromUserProfileId { get; set; } = string.Empty;
+        public UserProfile? ToUserProfile { get; set; }
+        public UserProfile? FromUserProfile { get; set; }
     }
 }

@@ -8,5 +8,5 @@ namespace dotnet_social_api.Models;
 
 public class UserProfile : IdentityUser
 {
-    public string Bio { get; set; } = string.Empty;
+    // public string Bio { get; set; } = string.Empty;
 }

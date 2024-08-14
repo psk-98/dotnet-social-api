@@ -10,5 +10,6 @@ namespace dotnet_social_api.Interface;
 public interface INotificationRepository
 {
     Task<Notification> CreateAsync(Notification notificationModel);
+    Task<List<Notification>> GetAllAsync();
 
 }

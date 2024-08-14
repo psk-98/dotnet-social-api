@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Dtos.Comment;
+using dotnet_social_api.Dto.Combined;
 using dotnet_social_api.Dto.Comment;
 using dotnet_social_api.Dto.Notification;
 using dotnet_social_api.Extensions;
 using dotnet_social_api.Interface;
 using dotnet_social_api.Mappers;
 using dotnet_social_api.Models;
+using dotnet_social_api.Models.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -33,19 +35,22 @@ public class CommentController : ControllerBase
 
     [HttpPost("{postId:int}")]
     [Authorize]
-    public async Task<IActionResult> Create([FromRoute] int postId, CreateCommentDto commentDto, CreateNotifactionDto notifactionDto)
+    public async Task<IActionResult> Create([FromRoute] int postId, CreateCommentAndNotificationDto combinedDto)
     {
         if (!ModelState.IsValid) return BadRequest(ModelState);
 
-        if (!await _postRepo.PostExists(postId)) return BadRequest("Stock does not exist");
+        var currentPostModel = await _postRepo.GetByIdAsync(postId);
+        if (currentPostModel == null) return BadRequest("Post does not exist");
 
         var username = User.GetUsername();
-        var userProfile = await _userManager.FindByNameAsync(username);
+        var fromUserProfile = await _userManager.FindByNameAsync(username);
 
-        var commentModel = commentDto.ToCommentFromCreate(postId, userProfile.Id);
+
+        var commentModel = combinedDto.Comment.ToCommentFromCreate(postId, fromUserProfile.Id);
         await _commentRepo.CreateAsync(commentModel);
 
-        var notificationModel = notifactionDto.ToNotificationFromCreate(type, toUserProfile, userProfile.Id)
+        var notificationModel = combinedDto.Notification.ToNotificationFromCreate(currentPostModel.UserProfile, fromUserProfile, NotificationType.Comment);
+        await _notificationRepo.CreateAsync(notificationModel);
 
         return CreatedAtAction(nameof(GetById), new { id = commentModel.Id }, commentModel.ToCommentDto());
     }

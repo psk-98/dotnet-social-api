@@ -11,5 +11,5 @@ public class Post
     public string Body { get; set; } = string.Empty;
     public DateTime CreatedOn { get; set; } = DateTime.Now;
     public string UserProfileId { get; set; } = string.Empty;
-    public UserProfile UserProfile { get; set; }
+    public UserProfile? UserProfile { get; set; }
 }
