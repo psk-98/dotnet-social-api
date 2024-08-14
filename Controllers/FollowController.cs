@@ -26,7 +26,7 @@ public class FollowController : ControllerBase
         _userManager = userManager;
     }
 
-    [HttpPost("{username:string}")]
+    [HttpPost("{username}")]
     [Authorize]
     public async Task<IActionResult> Create([FromRoute] string username, CreateFollowDto followDto)
     {
@@ -44,7 +44,7 @@ public class FollowController : ControllerBase
         return Created();
     }
 
-    [HttpDelete("followId:int")]
+    [HttpDelete("{followId:int}")]
     [Authorize]
     public async Task<IActionResult> Delete([FromRoute] int followId)
     {

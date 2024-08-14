@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using dotnet_social_api.Data;
 using dotnet_social_api.Interface;
 using dotnet_social_api.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace dotnet_social_api.Repository;
 
@@ -15,13 +16,23 @@ public class LikeRepository : ILikeRepository
     {
         _context = context;
     }
-    public Task<Like> CreateAsync(Like likeModel)
+    public async Task<Like> CreateAsync(Like likeModel)
     {
-        throw new NotImplementedException();
+        await _context.Likes.AddAsync(likeModel);
+        await _context.SaveChangesAsync();
+
+        return likeModel;
     }
 
-    public Task<Like> DeleteAsync(int id)
+    public async Task<Like> DeleteAsync(int id)
     {
-        throw new NotImplementedException();
+        var likeModel = await _context.Likes.FirstOrDefaultAsync(l => l.Id == id);
+
+        if (likeModel == null) return null;
+
+        _context.Likes.Remove(likeModel);
+        await _context.SaveChangesAsync();
+
+        return likeModel;
     }
 }

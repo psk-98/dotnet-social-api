@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using dotnet_social_api.Dto.Post;
 using dotnet_social_api.Extensions;
+using dotnet_social_api.Helpers;
 using dotnet_social_api.Interface;
 using dotnet_social_api.Mappers;
 using dotnet_social_api.Models;
@@ -26,11 +27,11 @@ public class PostController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAll()
+    public async Task<IActionResult> GetAll([FromQuery] PostQueryObject query)
     {
         if (!ModelState.IsValid) return BadRequest(ModelState);
 
-        var posts = await _postRepo.GetAllAsync();
+        var posts = await _postRepo.GetAllAsync(query);
         var postDto = posts.Select(p => p.ToPostDto());
 
         return Ok(postDto);

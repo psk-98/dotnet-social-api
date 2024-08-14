@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using dotnet_social_api.Data;
+using dotnet_social_api.Helpers;
 using dotnet_social_api.Interface;
 using dotnet_social_api.Models;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +22,7 @@ public class PostRepository : IPostRepository
     {
         await _context.Posts.AddAsync(postModel);
         await _context.SaveChangesAsync();
+
         return postModel;
     }
 
@@ -37,12 +39,25 @@ public class PostRepository : IPostRepository
 
     }
 
-    public async Task<List<Post>> GetAllAsync()
+    public async Task<List<Post>> GetAllAsync(PostQueryObject query)
     {
-        return await _context.Posts.Include(p => p.UserProfile).ToListAsync();
+        var posts = _context.Posts.Include(p => p.UserProfile).AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(query.Following))
+        {
+            var followedUsers = _context.Follows.Where(fu => fu.FollowerUserId == query.Following).Select(f => f.FolloweeUserId);
+            posts = posts.Where(p => followedUsers.Contains(p.UserProfileId));
+        }
+
+        if (!string.IsNullOrWhiteSpace(query.Username))
+        {
+            posts = posts.Where(p => p.UserProfile.UserName == query.Username);
+        }
+
+        return await posts.ToListAsync();
     }
 
-    public async Task<Post> GetByIdAsync(int id)
+    public async Task<Post?> GetByIdAsync(int id)
     {
         return await _context.Posts.Include(u => u.UserProfile).FirstOrDefaultAsync(p => p.Id == id);
     }
@@ -52,7 +67,7 @@ public class PostRepository : IPostRepository
         return _context.Posts.AnyAsync(s => s.Id == id);
     }
 
-    public async Task<Post> UpdateAsync(int id, Post postModel)
+    public async Task<Post?> UpdateAsync(int id, Post postModel)
     {
         var existingPost = await _context.Posts.FindAsync(id);
 

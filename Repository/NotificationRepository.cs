@@ -16,7 +16,6 @@ public class NotificationRepository : INotificationRepository
     public NotificationRepository(ApplicationDBContext context)
     {
         _context = context;
-
     }
 
     public async Task<Notification> CreateAsync(Notification notificationModel)
