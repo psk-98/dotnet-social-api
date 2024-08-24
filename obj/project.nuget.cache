@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3bmcxSbBhlUU5skYORHpAIwmk8mXXQ/mg98+0DBlWYiwHYxloW20xC6FLmENocTL4h/08dEL3b9OVsfEBdkxgQ==",
+  "dgSpecHash": "NM8MyKrM+Snb55KlghWz10kMBaorNKc9tsBJ6jPvTV0yRd8BryzxWgpduW+QjQbLna95bqbwN7vp81K3AsPbcw==",
   "success": true,
-  "projectFilePath": "/home/omen/Documents/dotnet-social-api/dotnet-social-api.csproj",
+  "projectFilePath": "/home/omen/Documents/web-dev/dotnet-social-api/dotnet-social-api.csproj",
   "expectedPackageFiles": [
     "/home/omen/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/home/omen/.nuget/packages/microsoft.aspnetcore.authentication.jwtbearer/8.0.0/microsoft.aspnetcore.authentication.jwtbearer.8.0.0.nupkg.sha512",

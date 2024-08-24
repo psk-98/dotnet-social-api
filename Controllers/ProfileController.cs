@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using dotnet_social_api.Dto.Profile;
+using dotnet_social_api.Extensions;
 using dotnet_social_api.Interface;
+using dotnet_social_api.Mappers;
 using dotnet_social_api.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -86,5 +88,37 @@ public class ProfileController : ControllerBase
             Email = user.Email,
             Token = _tokenService.CreateToken(user)
         });
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById([FromRoute] string id)
+    {
+        if (!ModelState.IsValid) return BadRequest(ModelState);
+
+        var userProfile = await _userManager.FindByIdAsync(id);
+        if (userProfile == null) return NotFound("User not found");
+
+        var userDto = userProfile.ToUserDto();
+
+        return Ok(userDto);
+
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete([FromRoute] string id)
+    {
+        if (!ModelState.IsValid) return BadRequest(ModelState);
+
+        var userProfile = await _userManager.FindByIdAsync(id);
+        if (userProfile == null) return NotFound("User not found");
+
+        var authorizedUsername = User.GetUsername();
+        var authorizedUserProfile = await _userManager.FindByNameAsync(authorizedUsername);
+
+        if (authorizedUserProfile.Id != id) return Unauthorized();
+
+        await _userManager.DeleteAsync(userProfile);
+
+        return Ok();
     }
 }

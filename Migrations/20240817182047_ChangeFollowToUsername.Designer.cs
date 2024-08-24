@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using dotnet_social_api.Data;
 
@@ -10,9 +11,11 @@ using dotnet_social_api.Data;
 namespace dotnet_social_api.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240817182047_ChangeFollowToUsername")]
+    partial class ChangeFollowToUsername
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
@@ -45,13 +48,13 @@ namespace dotnet_social_api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ed677356-50e3-4640-8077-99db7f391a5b",
+                            Id = "e8aa08c2-0e5a-46aa-9bd2-af595c1abd95",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "5c1e530a-a1c8-460b-b3eb-e32d50e01ffb",
+                            Id = "ca3d3d13-74ae-45a0-9c5b-0e498e91d332",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -194,18 +197,18 @@ namespace dotnet_social_api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("FolloweeUserId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("FolloweeUserProfileId")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("FollowerUserId")
+                    b.Property<string>("FolloweeUsername")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("FollowerUserProfileId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("FollowerUsername")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

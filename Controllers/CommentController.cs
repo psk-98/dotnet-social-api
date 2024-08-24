@@ -67,6 +67,19 @@ public class CommentController : ControllerBase
         return Ok(comment.ToCommentDto());
     }
 
+    [HttpGet("post/{postId:int}")]
+    public async Task<IActionResult> GetByPostId(int postId)
+    {
+        if (!ModelState.IsValid) return BadRequest(ModelState);
+
+        var comment = await _commentRepo.GetByIdAsync(postId);
+
+        if (comment == null) return NotFound();
+
+        return Ok(comment.ToCommentDto());
+    }
+
+
     [HttpPut]
     [Route("{id:int}")]
     public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateCommentRequestDto updateDto)

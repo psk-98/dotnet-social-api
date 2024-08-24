@@ -26,7 +26,7 @@ public class FollowController : ControllerBase
         _userManager = userManager;
     }
 
-    [HttpPost("{username}")]
+    [HttpPost("{followerUsername}")]
     [Authorize]
     public async Task<IActionResult> Create([FromRoute] string username, CreateFollowDto followDto)
     {

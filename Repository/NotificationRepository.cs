@@ -26,8 +26,23 @@ public class NotificationRepository : INotificationRepository
         return notificationModel;
     }
 
-    public async Task<List<Notification>> GetAllAsync()
+    public async Task<Notification> UpdateAsync(int id)
     {
-        return await _context.Notifications.ToListAsync();
+        var exisitingNotification = await _context.Notifications.FindAsync(id);
+        if (exisitingNotification == null) return null;
+        //add validation to check if the user updating if the user the notification was sent to 
+        exisitingNotification.IsSeen = true;
+        await _context.SaveChangesAsync();
+
+        return exisitingNotification;
+    }
+
+    public async Task<List<Notification>> GetAllAsync(string id)
+    {
+        var notifications = _context.Notifications.Include(p => p.ToUserProfile).AsQueryable();
+
+        notifications = notifications.Where(p => p.ToUserProfile.Id == id);
+
+        return await notifications.ToListAsync();
     }
 }

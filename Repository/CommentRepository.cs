@@ -48,6 +48,18 @@ public class CommentRepository : ICommentRepository
 
     }
 
+    public async Task<List<Comment>> GetByPostIdAsync(int id)
+    {
+        var postModel = await _context.Posts.FirstOrDefaultAsync(p => p.Id == id);
+        if (postModel == null) return null;
+
+        var comments = _context.Comments.Include(p => p.Post).AsQueryable();
+        comments = comments.Where(p => p.Post.Id == id);
+
+        return await comments.ToListAsync();
+
+    }
+
     public async Task<Comment> UpdateAsync(int id, Comment commentModel)
     {
         var exisitingComment = await _context.Comments.FindAsync(id);

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/omen/Documents/dotnet-social-api/dotnet-social-api.csproj": {}
+    "/home/omen/Documents/web-dev/dotnet-social-api/dotnet-social-api.csproj": {}
   },
   "projects": {
-    "/home/omen/Documents/dotnet-social-api/dotnet-social-api.csproj": {
+    "/home/omen/Documents/web-dev/dotnet-social-api/dotnet-social-api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/omen/Documents/dotnet-social-api/dotnet-social-api.csproj",
+        "projectUniqueName": "/home/omen/Documents/web-dev/dotnet-social-api/dotnet-social-api.csproj",
         "projectName": "dotnet-social-api",
-        "projectPath": "/home/omen/Documents/dotnet-social-api/dotnet-social-api.csproj",
+        "projectPath": "/home/omen/Documents/web-dev/dotnet-social-api/dotnet-social-api.csproj",
         "packagesPath": "/home/omen/.nuget/packages/",
-        "outputPath": "/home/omen/Documents/dotnet-social-api/obj/",
+        "outputPath": "/home/omen/Documents/web-dev/dotnet-social-api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/omen/.nuget/NuGet/NuGet.Config"
@@ -103,7 +103,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.107/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.108/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

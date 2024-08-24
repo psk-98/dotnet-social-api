@@ -22,7 +22,8 @@ public class ApplicationDBContext : IdentityDbContext<UserProfile>
     public DbSet<Like> Likes { get; set; }
     public DbSet<Follow> Follows { get; set; }
     public DbSet<Notification> Notifications { get; set; }
-    // public DbSet<MessageThread> MessageThreads { get; set; }
+    public DbSet<MessageThread> MessageThreads { get; set; }
+    public DbSet<Message> Messages { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder builder)
