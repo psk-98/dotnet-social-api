@@ -7,6 +7,7 @@ using dotnet_social_api.Extensions;
 using dotnet_social_api.Interface;
 using dotnet_social_api.Mappers;
 using dotnet_social_api.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -103,8 +104,34 @@ public class ProfileController : ControllerBase
         return Ok(userDto);
 
     }
+    [HttpPut("{id}")]
+    [Authorize]
+    public async Task<IActionResult> Update([FromRoute] string id, [FromBody] UpdateProfileDto updateDto)
+    {
+        if (!ModelState.IsValid) return BadRequest(ModelState);
+
+        var userProfile = await _userManager.FindByIdAsync(id);
+        if (userProfile == null) return NotFound("User not found");
+        //Get loged in user 
+        var authorizedUsername = User.GetUsername();
+        var authorizedUserProfile = await _userManager.FindByNameAsync(authorizedUsername);
+        //make sure logged in user is updating their profile, you also implement this on the frontend
+        if (authorizedUserProfile.Id != id) return Unauthorized();
+
+        userProfile.UserName = updateDto.Username ?? userProfile.UserName;
+        userProfile.Email = updateDto.Email ?? userProfile.Email;
+        userProfile.Bio = updateDto.Bio ?? userProfile.Bio;
+        userProfile.Website = updateDto.Website ?? userProfile.Website;
+
+        var updateResult = await _userManager.UpdateAsync(userProfile);
+
+        if (!updateResult.Succeeded) return StatusCode(StatusCodes.Status500InternalServerError, updateResult.Errors);
+
+        return Ok(userProfile.ToUserDto());
+    }
 
     [HttpDelete("{id}")]
+    [Authorize]
     public async Task<IActionResult> Delete([FromRoute] string id)
     {
         if (!ModelState.IsValid) return BadRequest(ModelState);

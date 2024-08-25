@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using dotnet_social_api.Extensions;
+using dotnet_social_api.Helpers;
 using dotnet_social_api.Interface;
 using dotnet_social_api.Mappers;
 using dotnet_social_api.Models;
@@ -26,14 +27,14 @@ public class NoticationController : ControllerBase
 
     [HttpGet]
     [Authorize]
-    public async Task<IActionResult> GetAll()
+    public async Task<IActionResult> GetAll([FromQuery] NotificationQueryObject queryObject)
     {
         if (!ModelState.IsValid) return BadRequest(ModelState);
 
         var username = User.GetUsername();
         var authorizedUserProfile = await _userManager.FindByNameAsync(username);
 
-        var notifications = await _notificationRepo.GetAllAsync(authorizedUserProfile.Id);
+        var notifications = await _notificationRepo.GetAllAsync(authorizedUserProfile.Id, queryObject);
         var notifactionDto = notifications.Select(n => n.ToNotificationDto());
 
         return Ok(notifactionDto);

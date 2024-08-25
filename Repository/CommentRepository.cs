@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using dotnet_social_api.Data;
+using dotnet_social_api.Helpers;
 using dotnet_social_api.Interface;
 using dotnet_social_api.Models;
 using Microsoft.EntityFrameworkCore;
@@ -36,27 +37,30 @@ public class CommentRepository : ICommentRepository
         return commentModel;
     }
 
-    public async Task<List<Comment>> GetAllAsync()
+
+    public async Task<List<Comment>> GetAllAsync(CommentQueryObject queryObject)
     {
-        return await _context.Comments.Include(a => a.UserProfile).ToListAsync();
+        var comments = _context.Comments.Include(a => a.UserProfile).AsQueryable();
+
+        if (queryObject.PostId != null)
+        {
+            comments = comments.Where(c => c.PostId == queryObject.PostId);
+        }
+
+        if (!string.IsNullOrWhiteSpace(queryObject.Username))
+        {
+            comments = comments.Where(c => c.UserProfile.UserName == queryObject.Username);
+        }
+
+        var skipNumber = (queryObject.PageNumber - 1) * queryObject.PageSize;
+
+        return await comments.Skip(skipNumber).Take(queryObject.PageSize).ToListAsync();
 
     }
 
     public async Task<Comment?> GetByIdAsync(int id)
     {
         return await _context.Comments.Include(a => a.UserProfile).FirstOrDefaultAsync(c => c.Id == id);
-
-    }
-
-    public async Task<List<Comment>> GetByPostIdAsync(int id)
-    {
-        var postModel = await _context.Posts.FirstOrDefaultAsync(p => p.Id == id);
-        if (postModel == null) return null;
-
-        var comments = _context.Comments.Include(p => p.Post).AsQueryable();
-        comments = comments.Where(p => p.Post.Id == id);
-
-        return await comments.ToListAsync();
 
     }
 

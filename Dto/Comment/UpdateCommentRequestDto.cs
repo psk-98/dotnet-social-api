@@ -9,9 +9,8 @@ namespace api.Dtos.Comment;
 public class UpdateCommentRequestDto
 {
 
-    // [Required]
-    // [MinLength(5, ErrorMessage = "Content must be at least 5 characters")]
-    // [MaxLength(280, ErrorMessage = "Content  cannot be over 280 characters")]
-
+    [Required]
+    [MinLength(1, ErrorMessage = "Content must be at least 1 characters")]
+    [MaxLength(5000, ErrorMessage = "Content  cannot be over 5000 characters")]
     public string Body { get; set; } = string.Empty;
 }

@@ -8,4 +8,8 @@ public class UserDto
 {
     public string Id { get; set; }
     public string Username { get; set; }
+    public string Bio { get; set; }
+    public string Website { get; set; }
+    public DateTime DateJoined { get; set; }
+
 }

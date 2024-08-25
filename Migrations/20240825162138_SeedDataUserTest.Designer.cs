@@ -11,8 +11,8 @@ using dotnet_social_api.Data;
 namespace dotnet_social_api.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20240817183702_ChangeFollowToBackToId")]
-    partial class ChangeFollowToBackToId
+    [Migration("20240825162138_SeedDataUserTest")]
+    partial class SeedDataUserTest
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,13 +48,13 @@ namespace dotnet_social_api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ed677356-50e3-4640-8077-99db7f391a5b",
+                            Id = "264e82f5-3d25-45a5-b6cf-d394574024cf",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "5c1e530a-a1c8-460b-b3eb-e32d50e01ffb",
+                            Id = "6c871b71-90d9-47e3-afcc-fe24afdd25e4",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -250,6 +250,55 @@ namespace dotnet_social_api.Migrations
                     b.ToTable("Likes");
                 });
 
+            modelBuilder.Entity("dotnet_social_api.Models.Message", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Body")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("FromUserProfileId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsSeen")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("MessageThreadId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ToUserProfileId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FromUserProfileId");
+
+                    b.HasIndex("MessageThreadId");
+
+                    b.HasIndex("ToUserProfileId");
+
+                    b.ToTable("Messages");
+                });
+
+            modelBuilder.Entity("dotnet_social_api.Models.MessageThread", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MessageThreads");
+                });
+
             modelBuilder.Entity("dotnet_social_api.Models.Notification", b =>
                 {
                     b.Property<int>("Id")
@@ -314,8 +363,15 @@ namespace dotnet_social_api.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Bio")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("DateJoined")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
@@ -358,6 +414,10 @@ namespace dotnet_social_api.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Website")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -368,6 +428,98 @@ namespace dotnet_social_api.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "ed677356-50e3-4640-8077-99db7f391a5b",
+                            AccessFailedCount = 0,
+                            Bio = "System Administrator",
+                            ConcurrencyStamp = "6a2a5d3f-c630-4276-84d9-faa3fc2c51c6",
+                            DateJoined = new DateTime(2024, 8, 25, 18, 21, 37, 210, DateTimeKind.Local).AddTicks(5598),
+                            Email = "admin@localhost",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedUserName = "ADMIN",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBcrERI6eJaAxSG43zYIgiPZasyTPo96JPiIkljlx8v40oIvtIKaCte3LKu/Xpx1/Q==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "5bafa22b-48f9-4a94-9c12-d8ca81807857",
+                            TwoFactorEnabled = false,
+                            UserName = "Admin",
+                            Website = "http://localhost"
+                        },
+                        new
+                        {
+                            Id = "b31adf09-b1f4-4f2d-bb02-6d1e9f7c65b6",
+                            AccessFailedCount = 0,
+                            Bio = "Software Developer",
+                            ConcurrencyStamp = "b4c120d2-8c46-4b92-9783-e6fc4e480408",
+                            DateJoined = new DateTime(2024, 8, 25, 18, 21, 37, 292, DateTimeKind.Local).AddTicks(2227),
+                            Email = "devuser@localhost",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedUserName = "DEVUSER",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPROxpzCYuUkmJZm6mR0hd0lqgWLh+7ud2hxVZKs+k3tQRprk2RUqoXLjPItOceWrA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "3e8b3e88-a09d-4328-82a0-084f9b5a4ecf",
+                            TwoFactorEnabled = false,
+                            UserName = "DevUser",
+                            Website = "http://devsite.local"
+                        },
+                        new
+                        {
+                            Id = "4d1cf4a5-4e5d-43d5-bb1d-22a5b0c85dcb",
+                            AccessFailedCount = 0,
+                            Bio = "Creative Designer",
+                            ConcurrencyStamp = "165cb60a-1c29-4d68-95c6-716a8067eeda",
+                            DateJoined = new DateTime(2024, 8, 25, 18, 21, 37, 374, DateTimeKind.Local).AddTicks(6686),
+                            Email = "designguru@localhost",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedUserName = "DESIGNGURU",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJ3K/eTdrZ3WfG1AYFi1NRMPxqIEog1LmryAt0p9eMPnL2uDEl57eLwiVtdg4LHhzQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "bc20f919-d528-429c-9f72-3719036dc49e",
+                            TwoFactorEnabled = false,
+                            UserName = "DesignGuru",
+                            Website = "http://design.local"
+                        },
+                        new
+                        {
+                            Id = "0f6a348a-760e-4f67-8a72-fb1397b43f23",
+                            AccessFailedCount = 0,
+                            Bio = "Marketing Specialist",
+                            ConcurrencyStamp = "1c0abc36-66e8-4733-9120-e6493f4556e9",
+                            DateJoined = new DateTime(2024, 8, 25, 18, 21, 37, 456, DateTimeKind.Local).AddTicks(6836),
+                            Email = "marketer@localhost",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedUserName = "MARKETER",
+                            PasswordHash = "AQAAAAIAAYagAAAAEL4b2dsI+NVgjx4lUcjCYTZSJODgAIwD3C08Ff2xSYW9uSYYkpMK0aG6E6Lmhy2Kog==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "e70f7365-67a3-440a-9829-64ef8176818b",
+                            TwoFactorEnabled = false,
+                            UserName = "Marketer",
+                            Website = "http://market.local"
+                        },
+                        new
+                        {
+                            Id = "a87b2e1e-39a4-4fd1-8237-f013f4e9cf6b",
+                            AccessFailedCount = 0,
+                            Bio = "Customer Support Tech",
+                            ConcurrencyStamp = "34667dcf-2783-4230-8630-0815d5885366",
+                            DateJoined = new DateTime(2024, 8, 25, 18, 21, 37, 538, DateTimeKind.Local).AddTicks(7044),
+                            Email = "supporttech@localhost",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedUserName = "SUPPORTTECH",
+                            PasswordHash = "AQAAAAIAAYagAAAAEM01W1CHSyctt9ZVaYdL2SErbWH1Nhp48ocZvh+rLa3L3a68eK9Aa+CXs7i+U+O0WQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "780ea171-2fd8-4a91-bc9f-81006831e954",
+                            TwoFactorEnabled = false,
+                            UserName = "SupportTech",
+                            Website = "http://support.local"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -476,6 +628,33 @@ namespace dotnet_social_api.Migrations
                     b.Navigation("UserProfile");
                 });
 
+            modelBuilder.Entity("dotnet_social_api.Models.Message", b =>
+                {
+                    b.HasOne("dotnet_social_api.Models.UserProfile", "FromUserProfile")
+                        .WithMany()
+                        .HasForeignKey("FromUserProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("dotnet_social_api.Models.MessageThread", "MessageThread")
+                        .WithMany("Messages")
+                        .HasForeignKey("MessageThreadId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("dotnet_social_api.Models.UserProfile", "ToUserProfile")
+                        .WithMany()
+                        .HasForeignKey("ToUserProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FromUserProfile");
+
+                    b.Navigation("MessageThread");
+
+                    b.Navigation("ToUserProfile");
+                });
+
             modelBuilder.Entity("dotnet_social_api.Models.Notification", b =>
                 {
                     b.HasOne("dotnet_social_api.Models.UserProfile", "FromUserProfile")
@@ -504,6 +683,11 @@ namespace dotnet_social_api.Migrations
                         .IsRequired();
 
                     b.Navigation("UserProfile");
+                });
+
+            modelBuilder.Entity("dotnet_social_api.Models.MessageThread", b =>
+                {
+                    b.Navigation("Messages");
                 });
 #pragma warning restore 612, 618
         }

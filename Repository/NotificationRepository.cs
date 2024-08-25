@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using dotnet_social_api.Data;
+using dotnet_social_api.Helpers;
 using dotnet_social_api.Interface;
 using dotnet_social_api.Models;
 using dotnet_social_api.Models.Enums;
@@ -37,12 +38,15 @@ public class NotificationRepository : INotificationRepository
         return exisitingNotification;
     }
 
-    public async Task<List<Notification>> GetAllAsync(string id)
+    public async Task<List<Notification>> GetAllAsync(string id, NotificationQueryObject queryObject)
     {
         var notifications = _context.Notifications.Include(p => p.ToUserProfile).AsQueryable();
 
         notifications = notifications.Where(p => p.ToUserProfile.Id == id);
 
-        return await notifications.ToListAsync();
+        var skipNumber = (queryObject.PageNumber - 1) * queryObject.PageSize;
+
+
+        return await notifications.Skip(skipNumber).Take(queryObject.PageSize).ToListAsync();
     }
 }

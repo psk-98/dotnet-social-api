@@ -14,7 +14,10 @@ public static class UserMappers
         return new UserDto
         {
             Id = userModel.Id,
-            Username = userModel.UserName
+            Username = userModel.UserName,
+            Bio = userModel.Bio,
+            Website = userModel.Website,
+            DateJoined = userModel.DateJoined
         };
     }
 }

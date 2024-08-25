@@ -39,22 +39,24 @@ public class PostRepository : IPostRepository
 
     }
 
-    public async Task<List<Post>> GetAllAsync(PostQueryObject query)
+    public async Task<List<Post>> GetAllAsync(PostQueryObject queryObject)
     {
         var posts = _context.Posts.Include(p => p.UserProfile).AsQueryable();
 
-        if (!string.IsNullOrWhiteSpace(query.Following))
+        if (!string.IsNullOrWhiteSpace(queryObject.Following))
         {
-            var followedUsers = _context.Follows.Where(fu => fu.FollowerUserId == query.Following).Select(f => f.FolloweeUserId);
+            var followedUsers = _context.Follows.Where(fu => fu.FollowerUserId == queryObject.Following).Select(f => f.FolloweeUserId);
             posts = posts.Where(p => followedUsers.Contains(p.UserProfileId));
         }
 
-        if (!string.IsNullOrWhiteSpace(query.Username))
+        if (!string.IsNullOrWhiteSpace(queryObject.Username))
         {
-            posts = posts.Where(p => p.UserProfile.UserName == query.Username);
+            posts = posts.Where(p => p.UserProfile.UserName == queryObject.Username);
         }
 
-        return await posts.ToListAsync();
+        var skipNumber = (queryObject.PageNumber - 1) * queryObject.PageSize;
+
+        return await posts.Skip(skipNumber).Take(queryObject.PageSize).ToListAsync();
     }
 
     public async Task<Post?> GetByIdAsync(int id)

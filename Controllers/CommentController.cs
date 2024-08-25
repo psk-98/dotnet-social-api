@@ -7,6 +7,7 @@ using dotnet_social_api.Dto.Combined;
 using dotnet_social_api.Dto.Comment;
 using dotnet_social_api.Dto.Notification;
 using dotnet_social_api.Extensions;
+using dotnet_social_api.Helpers;
 using dotnet_social_api.Interface;
 using dotnet_social_api.Mappers;
 using dotnet_social_api.Models;
@@ -67,18 +68,16 @@ public class CommentController : ControllerBase
         return Ok(comment.ToCommentDto());
     }
 
-    [HttpGet("post/{postId:int}")]
-    public async Task<IActionResult> GetByPostId(int postId)
+    [HttpGet]
+    public async Task<IActionResult> GetAll([FromQuery] CommentQueryObject queryObject)
     {
         if (!ModelState.IsValid) return BadRequest(ModelState);
 
-        var comment = await _commentRepo.GetByIdAsync(postId);
+        var comments = await _commentRepo.GetAllAsync(queryObject);
+        var commentDtos = comments.Select(c => c.ToCommentDto());
 
-        if (comment == null) return NotFound();
-
-        return Ok(comment.ToCommentDto());
+        return Ok(commentDtos);
     }
-
 
     [HttpPut]
     [Route("{id:int}")]

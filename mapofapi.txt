@@ -1,0 +1,6 @@
+UserProfile
+    RegisterUser - need to add email verfication
+    Login
+    Get By Id
+    Delete
+    
