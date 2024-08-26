@@ -176,3 +176,16 @@ to manage user profiles, interactions, and content.
 - **Delete a Direct Message**
   - `DELETE /api/messages/{id}`
   - Deletes the direct message with the specified ID.
+
+## Authentication
+
+The API uses JWT Bearer Tokens for authentication. Ensure you include a valid
+token in the `Authorization` header of your requests. The header should be
+formatted as follows: For more information on JWT Bearer Tokens, refer to the
+[official documentation](https://docs.microsoft.com/aspnet/core/security/authentication/jwtbearer).
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file
+for details. For more information about the MIT License, visit the
+[MIT License website](https://opensource.org/licenses/MIT).
