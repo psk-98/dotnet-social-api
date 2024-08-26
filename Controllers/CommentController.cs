@@ -53,7 +53,7 @@ public class CommentController : ControllerBase
         var notificationModel = combinedDto.Notification.ToNotificationFromCreate(currentPostModel.UserProfile, fromUserProfile, NotificationType.Comment);
         await _notificationRepo.CreateAsync(notificationModel);
 
-        return CreatedAtAction(nameof(GetById), new { id = commentModel.Id }, commentModel.ToCommentDto());
+        return CreatedAtAction(nameof(GetById), new { id = commentModel.Id }, commentModel.ToCommentDto(0));
     }
 
     [HttpGet("{id:int}")]
@@ -65,7 +65,9 @@ public class CommentController : ControllerBase
 
         if (comment == null) return NotFound();
 
-        return Ok(comment.ToCommentDto());
+        var likeCount = await _commentRepo.GetLikeCountAsync(id);
+
+        return Ok(comment.ToCommentDto(likeCount));
     }
 
     [HttpGet]
@@ -74,7 +76,14 @@ public class CommentController : ControllerBase
         if (!ModelState.IsValid) return BadRequest(ModelState);
 
         var comments = await _commentRepo.GetAllAsync(queryObject);
-        var commentDtos = comments.Select(c => c.ToCommentDto());
+
+        var commentDtoTasks = comments.Select(async c =>
+        {
+            var likeCount = await _commentRepo.GetLikeCountAsync(c.Id);
+            return c.ToCommentDto(likeCount);
+        });
+
+        var commentDtos = await Task.WhenAll(commentDtoTasks);
 
         return Ok(commentDtos);
     }
@@ -89,7 +98,9 @@ public class CommentController : ControllerBase
 
         if (comment == null) return NotFound("Comment not found");
 
-        return Ok(comment.ToCommentDto());
+        var likeCount = await _commentRepo.GetLikeCountAsync(id);
+
+        return Ok(comment.ToCommentDto(likeCount));
     }
 
     [HttpDelete]

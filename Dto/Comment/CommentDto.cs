@@ -11,5 +11,6 @@ public class CommentDto
     public string Body { get; set; } = string.Empty;
     public DateTime CreatedOn { get; set; } = DateTime.Now;
     public string CreatedBy { get; set; } = string.Empty;
+    public int LikeCount { get; set; }
     public int? PostId { get; set; }
 }

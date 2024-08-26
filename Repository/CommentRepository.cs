@@ -76,4 +76,9 @@ public class CommentRepository : ICommentRepository
 
         return exisitingComment;
     }
+
+    public async Task<int> GetLikeCountAsync(int commentId)
+    {
+        return await _context.Likes.CountAsync(l => l.CommentId == commentId);
+    }
 }

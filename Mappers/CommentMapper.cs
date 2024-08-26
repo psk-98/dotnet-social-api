@@ -20,7 +20,7 @@ public static class CommentMapper
         };
     }
 
-    public static CommentDto ToCommentDto(this Comment commentModel)
+    public static CommentDto ToCommentDto(this Comment commentModel, int likeCount)
     {
         return new CommentDto
         {
@@ -28,7 +28,8 @@ public static class CommentMapper
             Body = commentModel.Body,
             CreatedOn = commentModel.CreatedOn,
             CreatedBy = commentModel.UserProfile.UserName,
-            PostId = commentModel.PostId
+            PostId = commentModel.PostId,
+            LikeCount = likeCount
         };
     }
 
