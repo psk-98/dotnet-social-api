@@ -81,4 +81,14 @@ public class PostRepository : IPostRepository
 
         return existingPost;
     }
+
+    public async Task<int> GetCommentCountAsync(int postId)
+    {
+        return await _context.Comments.CountAsync(c => c.PostId == postId);
+    }
+
+    public async Task<int> GetLikeCountAsync(int postId)
+    {
+        return await _context.Likes.CountAsync(l => l.PostId == postId);
+    }
 }

@@ -15,5 +15,7 @@ namespace dotnet_social_api.Interface
         Task<Post?> UpdateAsync(int id, Post postModel);
         Task<Post> DeleteAsync(int id);
         Task<bool> PostExists(int id);
+        Task<int> GetCommentCountAsync(int postId);
+        Task<int> GetLikeCountAsync(int postId);
     }
 }

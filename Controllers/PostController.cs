@@ -32,9 +32,17 @@ public class PostController : ControllerBase
         if (!ModelState.IsValid) return BadRequest(ModelState);
 
         var posts = await _postRepo.GetAllAsync(query);
-        var postDto = posts.Select(p => p.ToPostDto());
 
-        return Ok(postDto);
+        var postDtoTasks = posts.Select(async p =>
+        {
+            var commentCount = await _postRepo.GetCommentCountAsync(p.Id);
+            var likeCount = await _postRepo.GetLikeCountAsync(p.Id);
+
+
+            return p.ToPostDto(commentCount, likeCount);
+        });
+        var postsDto = await Task.WhenAll(postDtoTasks);
+        return Ok(postsDto);
     }
 
     [HttpGet("{id:int}")]
@@ -45,7 +53,10 @@ public class PostController : ControllerBase
         var post = await _postRepo.GetByIdAsync(id);
         if (post == null) return NotFound();
 
-        var postDto = post.ToPostDto();
+        var commentCount = await _postRepo.GetCommentCountAsync(id);
+        var likeCount = await _postRepo.GetLikeCountAsync(id);
+
+        var postDto = post.ToPostDto(commentCount, likeCount);
 
         return Ok(postDto);
     }
@@ -62,7 +73,7 @@ public class PostController : ControllerBase
         postModel.UserProfileId = userProfile.Id;
         await _postRepo.CreateAsync(postModel);
 
-        return CreatedAtAction(nameof(GetById), new { id = postModel.Id }, postModel.ToPostDto());
+        return CreatedAtAction(nameof(GetById), new { id = postModel.Id }, postModel.ToPostDto(0, 0));
     }
 
     [HttpPut]
@@ -75,7 +86,10 @@ public class PostController : ControllerBase
 
         if (postModel == null) return NotFound("Post not found");
 
-        return Ok(postModel.ToPostDto());
+        var commentCount = await _postRepo.GetCommentCountAsync(id);
+        var likeCount = await _postRepo.GetLikeCountAsync(id);
+
+        return Ok(postModel.ToPostDto(commentCount, likeCount));
     }
 
     [HttpDelete]

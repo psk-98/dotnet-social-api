@@ -20,4 +20,13 @@ public static class UserMappers
             DateJoined = userModel.DateJoined
         };
     }
+
+    // public static UserForPostCommentDto ToUserForPostCommentDto(this UserProfile userModel)
+    // {
+    //     return new UserForPostCommentDto
+    //     {
+    //         Id = userModel.Id,
+    //         Username = userModel.UserName
+    //     };
+    // }
 }
