@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using dotnet_social_api.Data;
 using dotnet_social_api.Dto.Profile;
 using dotnet_social_api.Extensions;
 using dotnet_social_api.Interface;
@@ -22,12 +23,14 @@ public class ProfileController : ControllerBase
     private readonly UserManager<UserProfile> _userManager;
     private readonly ITokenService _tokenService;
     private readonly SignInManager<UserProfile> _signInManager;
+    private readonly ApplicationDBContext _context;
 
-    public ProfileController(UserManager<UserProfile> userManager, ITokenService tokenService, SignInManager<UserProfile> signInManager)
+    public ProfileController(UserManager<UserProfile> userManager, ITokenService tokenService, SignInManager<UserProfile> signInManager, ApplicationDBContext context)
     {
         _userManager = userManager;
         _tokenService = tokenService;
         _signInManager = signInManager;
+        _context = context;
     }
 
     [HttpPost("register")]
@@ -100,6 +103,10 @@ public class ProfileController : ControllerBase
         if (userProfile == null) return NotFound("User not found");
 
         var userDto = userProfile.ToUserDto();
+
+        userDto.Followers = await _context.Follows.CountAsync(f => f.FolloweeUserId == id);
+        userDto.Following = await _context.Follows.CountAsync(f => f.FollowerUserId == id);
+
 
         return Ok(userDto);
 
