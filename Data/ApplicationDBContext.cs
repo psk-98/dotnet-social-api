@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using dotnet_social_api.Models;
+using dotnet_social_api.Models.Enums;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -29,6 +30,7 @@ public class ApplicationDBContext : IdentityDbContext<UserProfile>
     protected override void OnModelCreating(ModelBuilder builder)
     {
         var currentDate = DateTime.UtcNow;
+        // NotificationType notificationType;
 
         base.OnModelCreating(builder);
         //Seeding user roles
@@ -533,6 +535,123 @@ public class ApplicationDBContext : IdentityDbContext<UserProfile>
                 PostId = null,
                 CommentId = 5,
                 CreatedOn = currentDate.AddDays(-5)
+            }
+        );
+
+        //seeding notifications
+        builder.Entity<Notification>().HasData(
+            // Notifications for Likes on Posts
+            new Notification
+            {
+                Id = 1,
+                Type = NotificationType.Like,
+                CreatedOn = currentDate.AddDays(-1),
+                IsSeen = false,
+                ToUserProfileId = "ed677356-50e3-4640-8077-99db7f391a5b", // Admin
+                FromUserProfileId = "b31adf09-b1f4-4f2d-bb02-6d1e9f7c65b6",  // DevUser
+                PostId = 1,
+                CommentId = null
+            },
+            new Notification
+            {
+                Id = 2,
+                Type = NotificationType.Like,
+                CreatedOn = currentDate.AddDays(-2),
+                IsSeen = false,
+                ToUserProfileId = "b31adf09-b1f4-4f2d-bb02-6d1e9f7c65b6", // DevUser
+                FromUserProfileId = "4d1cf4a5-4e5d-43d5-bb1d-22a5b0c85dcb",  // DesignGuru
+                PostId = 2,
+                CommentId = null
+            },
+            new Notification
+            {
+                Id = 3,
+                Type = NotificationType.Like,
+                CreatedOn = currentDate.AddDays(-3),
+                IsSeen = false,
+                ToUserProfileId = "4d1cf4a5-4e5d-43d5-bb1d-22a5b0c85dcb", // DesignGuru
+                FromUserProfileId = "0f6a348a-760e-4f67-8a72-fb1397b43f23",  // Marketer
+                PostId = 3,
+                CommentId = null
+            },
+            new Notification
+            {
+                Id = 4,
+                Type = NotificationType.Like,
+                CreatedOn = currentDate.AddDays(-4),
+                IsSeen = false,
+                ToUserProfileId = "0f6a348a-760e-4f67-8a72-fb1397b43f23", // Marketer
+                FromUserProfileId = "a87b2e1e-39a4-4fd1-8237-f013f4e9cf6b",  // SupportTech
+                PostId = 4,
+                CommentId = null
+            },
+            new Notification
+            {
+                Id = 5,
+                Type = NotificationType.Like,
+                CreatedOn = currentDate.AddDays(-5),
+                IsSeen = false,
+                ToUserProfileId = "a87b2e1e-39a4-4fd1-8237-f013f4e9cf6b", // SupportTech
+                FromUserProfileId = "ed677356-50e3-4640-8077-99db7f391a5b",  // Admin
+                PostId = 5,
+                CommentId = null
+            },
+
+            // Notifications for Likes on Comments
+            new Notification
+            {
+                Id = 6,
+                Type = NotificationType.Like,
+                CreatedOn = currentDate.AddDays(-1),
+                IsSeen = false,
+                ToUserProfileId = "b31adf09-b1f4-4f2d-bb02-6d1e9f7c65b6", // DevUser
+                FromUserProfileId = "4d1cf4a5-4e5d-43d5-bb1d-22a5b0c85dcb",  // DesignGuru
+                PostId = null,
+                CommentId = 1
+            },
+            new Notification
+            {
+                Id = 7,
+                Type = NotificationType.Like,
+                CreatedOn = currentDate.AddDays(-2),
+                IsSeen = false,
+                ToUserProfileId = "4d1cf4a5-4e5d-43d5-bb1d-22a5b0c85dcb", // DesignGuru
+                FromUserProfileId = "0f6a348a-760e-4f67-8a72-fb1397b43f23",  // Marketer
+                PostId = null,
+                CommentId = 2
+            },
+            new Notification
+            {
+                Id = 8,
+                Type = NotificationType.Like,
+                CreatedOn = currentDate.AddDays(-3),
+                IsSeen = false,
+                ToUserProfileId = "0f6a348a-760e-4f67-8a72-fb1397b43f23", // Marketer
+                FromUserProfileId = "a87b2e1e-39a4-4fd1-8237-f013f4e9cf6b",  // SupportTech
+                PostId = null,
+                CommentId = 3
+            },
+            new Notification
+            {
+                Id = 9,
+                Type = NotificationType.Like,
+                CreatedOn = currentDate.AddDays(-4),
+                IsSeen = false,
+                ToUserProfileId = "a87b2e1e-39a4-4fd1-8237-f013f4e9cf6b", // SupportTech
+                FromUserProfileId = "ed677356-50e3-4640-8077-99db7f391a5b",  // Admin
+                PostId = null,
+                CommentId = 4
+            },
+            new Notification
+            {
+                Id = 10,
+                Type = NotificationType.Like,
+                CreatedOn = currentDate.AddDays(-5),
+                IsSeen = false,
+                ToUserProfileId = "ed677356-50e3-4640-8077-99db7f391a5b", // Admin
+                FromUserProfileId = "b31adf09-b1f4-4f2d-bb02-6d1e9f7c65b6",  // DevUser
+                PostId = null,
+                CommentId = 5
             }
         );
     }

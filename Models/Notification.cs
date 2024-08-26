@@ -16,5 +16,10 @@ namespace dotnet_social_api.Models
         public string FromUserProfileId { get; set; } = string.Empty;
         public UserProfile? ToUserProfile { get; set; }
         public UserProfile? FromUserProfile { get; set; }
+
+        public int? PostId { get; set; }
+        public Post? Post { get; set; }
+        public int? CommentId { get; set; }
+        public Comment? Comment { get; set; }
     }
 }

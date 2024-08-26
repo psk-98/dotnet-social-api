@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using dotnet_social_api.Data;
 
@@ -10,9 +11,11 @@ using dotnet_social_api.Data;
 namespace dotnet_social_api.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240826102254_InnitSeedingevenmore")]
+    partial class InnitSeedingevenmore
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
@@ -45,13 +48,13 @@ namespace dotnet_social_api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "03a67502-5fd3-4c0b-b2dd-7507e50f1540",
+                            Id = "8d50e43e-1012-46c6-a587-6593bb7aa450",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "9619dbce-e238-4c84-a4e3-3f6a1502073f",
+                            Id = "bb10387d-4b67-40ab-88dd-a72e98011353",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -192,7 +195,7 @@ namespace dotnet_social_api.Migrations
                         {
                             Id = 1,
                             Body = "Great post! Really enjoyed the insights.",
-                            CreatedOn = new DateTime(2024, 8, 24, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 24, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             PostId = 1,
                             UserProfileId = "b31adf09-b1f4-4f2d-bb02-6d1e9f7c65b6"
                         },
@@ -200,7 +203,7 @@ namespace dotnet_social_api.Migrations
                         {
                             Id = 2,
                             Body = "Thanks for sharing this information.",
-                            CreatedOn = new DateTime(2024, 8, 25, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 25, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             PostId = 2,
                             UserProfileId = "4d1cf4a5-4e5d-43d5-bb1d-22a5b0c85dcb"
                         },
@@ -208,7 +211,7 @@ namespace dotnet_social_api.Migrations
                         {
                             Id = 3,
                             Body = "This was very helpful. Looking forward to more updates!",
-                            CreatedOn = new DateTime(2024, 8, 23, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 23, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             PostId = 3,
                             UserProfileId = "0f6a348a-760e-4f67-8a72-fb1397b43f23"
                         },
@@ -216,7 +219,7 @@ namespace dotnet_social_api.Migrations
                         {
                             Id = 4,
                             Body = "I disagree with some of the points mentioned.",
-                            CreatedOn = new DateTime(2024, 8, 22, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 22, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             PostId = 4,
                             UserProfileId = "a87b2e1e-39a4-4fd1-8237-f013f4e9cf6b"
                         },
@@ -224,7 +227,7 @@ namespace dotnet_social_api.Migrations
                         {
                             Id = 5,
                             Body = "Can you provide more details on this topic?",
-                            CreatedOn = new DateTime(2024, 8, 21, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 21, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             PostId = 5,
                             UserProfileId = "ed677356-50e3-4640-8077-99db7f391a5b"
                         },
@@ -232,7 +235,7 @@ namespace dotnet_social_api.Migrations
                         {
                             Id = 6,
                             Body = "Amazing content! Keep up the great work.",
-                            CreatedOn = new DateTime(2024, 8, 20, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 20, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             PostId = 6,
                             UserProfileId = "b31adf09-b1f4-4f2d-bb02-6d1e9f7c65b6"
                         },
@@ -240,7 +243,7 @@ namespace dotnet_social_api.Migrations
                         {
                             Id = 7,
                             Body = "Very informative, but could use some examples.",
-                            CreatedOn = new DateTime(2024, 8, 19, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 19, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             PostId = 7,
                             UserProfileId = "4d1cf4a5-4e5d-43d5-bb1d-22a5b0c85dcb"
                         },
@@ -248,7 +251,7 @@ namespace dotnet_social_api.Migrations
                         {
                             Id = 8,
                             Body = "Nice article. I learned something new today!",
-                            CreatedOn = new DateTime(2024, 8, 18, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 18, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             PostId = 8,
                             UserProfileId = "0f6a348a-760e-4f67-8a72-fb1397b43f23"
                         },
@@ -256,7 +259,7 @@ namespace dotnet_social_api.Migrations
                         {
                             Id = 9,
                             Body = "Good read, but could be more concise.",
-                            CreatedOn = new DateTime(2024, 8, 17, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 17, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             PostId = 9,
                             UserProfileId = "a87b2e1e-39a4-4fd1-8237-f013f4e9cf6b"
                         },
@@ -264,7 +267,7 @@ namespace dotnet_social_api.Migrations
                         {
                             Id = 10,
                             Body = "Interesting perspective, thanks for sharing!",
-                            CreatedOn = new DateTime(2024, 8, 16, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 16, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             PostId = 10,
                             UserProfileId = "ed677356-50e3-4640-8077-99db7f391a5b"
                         });
@@ -394,35 +397,35 @@ namespace dotnet_social_api.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedOn = new DateTime(2024, 8, 25, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 25, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             PostId = 1,
                             UserProfileId = "ed677356-50e3-4640-8077-99db7f391a5b"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedOn = new DateTime(2024, 8, 24, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 24, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             PostId = 2,
                             UserProfileId = "b31adf09-b1f4-4f2d-bb02-6d1e9f7c65b6"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedOn = new DateTime(2024, 8, 23, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 23, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             PostId = 3,
                             UserProfileId = "4d1cf4a5-4e5d-43d5-bb1d-22a5b0c85dcb"
                         },
                         new
                         {
                             Id = 4,
-                            CreatedOn = new DateTime(2024, 8, 22, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 22, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             PostId = 4,
                             UserProfileId = "0f6a348a-760e-4f67-8a72-fb1397b43f23"
                         },
                         new
                         {
                             Id = 5,
-                            CreatedOn = new DateTime(2024, 8, 21, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 21, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             PostId = 5,
                             UserProfileId = "a87b2e1e-39a4-4fd1-8237-f013f4e9cf6b"
                         },
@@ -430,35 +433,35 @@ namespace dotnet_social_api.Migrations
                         {
                             Id = 6,
                             CommentId = 1,
-                            CreatedOn = new DateTime(2024, 8, 25, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 25, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             UserProfileId = "b31adf09-b1f4-4f2d-bb02-6d1e9f7c65b6"
                         },
                         new
                         {
                             Id = 7,
                             CommentId = 2,
-                            CreatedOn = new DateTime(2024, 8, 24, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 24, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             UserProfileId = "4d1cf4a5-4e5d-43d5-bb1d-22a5b0c85dcb"
                         },
                         new
                         {
                             Id = 8,
                             CommentId = 3,
-                            CreatedOn = new DateTime(2024, 8, 23, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 23, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             UserProfileId = "0f6a348a-760e-4f67-8a72-fb1397b43f23"
                         },
                         new
                         {
                             Id = 9,
                             CommentId = 4,
-                            CreatedOn = new DateTime(2024, 8, 22, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 22, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             UserProfileId = "a87b2e1e-39a4-4fd1-8237-f013f4e9cf6b"
                         },
                         new
                         {
                             Id = 10,
                             CommentId = 5,
-                            CreatedOn = new DateTime(2024, 8, 21, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 21, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             UserProfileId = "ed677356-50e3-4640-8077-99db7f391a5b"
                         });
                 });
@@ -518,9 +521,6 @@ namespace dotnet_social_api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("CommentId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("TEXT");
 
@@ -529,9 +529,6 @@ namespace dotnet_social_api.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("IsSeen")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("PostId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("ToUserProfileId")
@@ -543,117 +540,11 @@ namespace dotnet_social_api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CommentId");
-
                     b.HasIndex("FromUserProfileId");
-
-                    b.HasIndex("PostId");
 
                     b.HasIndex("ToUserProfileId");
 
                     b.ToTable("Notifications");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedOn = new DateTime(2024, 8, 25, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
-                            FromUserProfileId = "b31adf09-b1f4-4f2d-bb02-6d1e9f7c65b6",
-                            IsSeen = false,
-                            PostId = 1,
-                            ToUserProfileId = "ed677356-50e3-4640-8077-99db7f391a5b",
-                            Type = 3
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedOn = new DateTime(2024, 8, 24, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
-                            FromUserProfileId = "4d1cf4a5-4e5d-43d5-bb1d-22a5b0c85dcb",
-                            IsSeen = false,
-                            PostId = 2,
-                            ToUserProfileId = "b31adf09-b1f4-4f2d-bb02-6d1e9f7c65b6",
-                            Type = 3
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedOn = new DateTime(2024, 8, 23, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
-                            FromUserProfileId = "0f6a348a-760e-4f67-8a72-fb1397b43f23",
-                            IsSeen = false,
-                            PostId = 3,
-                            ToUserProfileId = "4d1cf4a5-4e5d-43d5-bb1d-22a5b0c85dcb",
-                            Type = 3
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedOn = new DateTime(2024, 8, 22, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
-                            FromUserProfileId = "a87b2e1e-39a4-4fd1-8237-f013f4e9cf6b",
-                            IsSeen = false,
-                            PostId = 4,
-                            ToUserProfileId = "0f6a348a-760e-4f67-8a72-fb1397b43f23",
-                            Type = 3
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CreatedOn = new DateTime(2024, 8, 21, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
-                            FromUserProfileId = "ed677356-50e3-4640-8077-99db7f391a5b",
-                            IsSeen = false,
-                            PostId = 5,
-                            ToUserProfileId = "a87b2e1e-39a4-4fd1-8237-f013f4e9cf6b",
-                            Type = 3
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CommentId = 1,
-                            CreatedOn = new DateTime(2024, 8, 25, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
-                            FromUserProfileId = "4d1cf4a5-4e5d-43d5-bb1d-22a5b0c85dcb",
-                            IsSeen = false,
-                            ToUserProfileId = "b31adf09-b1f4-4f2d-bb02-6d1e9f7c65b6",
-                            Type = 3
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CommentId = 2,
-                            CreatedOn = new DateTime(2024, 8, 24, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
-                            FromUserProfileId = "0f6a348a-760e-4f67-8a72-fb1397b43f23",
-                            IsSeen = false,
-                            ToUserProfileId = "4d1cf4a5-4e5d-43d5-bb1d-22a5b0c85dcb",
-                            Type = 3
-                        },
-                        new
-                        {
-                            Id = 8,
-                            CommentId = 3,
-                            CreatedOn = new DateTime(2024, 8, 23, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
-                            FromUserProfileId = "a87b2e1e-39a4-4fd1-8237-f013f4e9cf6b",
-                            IsSeen = false,
-                            ToUserProfileId = "0f6a348a-760e-4f67-8a72-fb1397b43f23",
-                            Type = 3
-                        },
-                        new
-                        {
-                            Id = 9,
-                            CommentId = 4,
-                            CreatedOn = new DateTime(2024, 8, 22, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
-                            FromUserProfileId = "ed677356-50e3-4640-8077-99db7f391a5b",
-                            IsSeen = false,
-                            ToUserProfileId = "a87b2e1e-39a4-4fd1-8237-f013f4e9cf6b",
-                            Type = 3
-                        },
-                        new
-                        {
-                            Id = 10,
-                            CommentId = 5,
-                            CreatedOn = new DateTime(2024, 8, 21, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
-                            FromUserProfileId = "b31adf09-b1f4-4f2d-bb02-6d1e9f7c65b6",
-                            IsSeen = false,
-                            ToUserProfileId = "ed677356-50e3-4640-8077-99db7f391a5b",
-                            Type = 3
-                        });
                 });
 
             modelBuilder.Entity("dotnet_social_api.Models.Post", b =>
@@ -684,175 +575,175 @@ namespace dotnet_social_api.Migrations
                         {
                             Id = 1,
                             Body = "Welcome to the system! Excited to have you here.",
-                            CreatedOn = new DateTime(2024, 8, 25, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 25, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             UserProfileId = "ed677356-50e3-4640-8077-99db7f391a5b"
                         },
                         new
                         {
                             Id = 2,
                             Body = "System maintenance scheduled for tonight.",
-                            CreatedOn = new DateTime(2024, 8, 26, 4, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 26, 4, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             UserProfileId = "ed677356-50e3-4640-8077-99db7f391a5b"
                         },
                         new
                         {
                             Id = 3,
                             Body = "New feature release notes available in the documentation.",
-                            CreatedOn = new DateTime(2024, 8, 24, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 24, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             UserProfileId = "ed677356-50e3-4640-8077-99db7f391a5b"
                         },
                         new
                         {
                             Id = 4,
                             Body = "Reminder: Update your profile settings.",
-                            CreatedOn = new DateTime(2024, 8, 23, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 23, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             UserProfileId = "ed677356-50e3-4640-8077-99db7f391a5b"
                         },
                         new
                         {
                             Id = 5,
                             Body = "Check out the latest system reports.",
-                            CreatedOn = new DateTime(2024, 8, 22, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 22, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             UserProfileId = "ed677356-50e3-4640-8077-99db7f391a5b"
                         },
                         new
                         {
                             Id = 6,
                             Body = "Just pushed a new update to the repository.",
-                            CreatedOn = new DateTime(2024, 8, 25, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 25, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             UserProfileId = "b31adf09-b1f4-4f2d-bb02-6d1e9f7c65b6"
                         },
                         new
                         {
                             Id = 7,
                             Body = "Working on improving the API performance.",
-                            CreatedOn = new DateTime(2024, 8, 24, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 24, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             UserProfileId = "b31adf09-b1f4-4f2d-bb02-6d1e9f7c65b6"
                         },
                         new
                         {
                             Id = 8,
                             Body = "Dev meetup scheduled for next week.",
-                            CreatedOn = new DateTime(2024, 8, 23, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 23, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             UserProfileId = "b31adf09-b1f4-4f2d-bb02-6d1e9f7c65b6"
                         },
                         new
                         {
                             Id = 9,
                             Body = "New blog post on best coding practices.",
-                            CreatedOn = new DateTime(2024, 8, 22, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 22, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             UserProfileId = "b31adf09-b1f4-4f2d-bb02-6d1e9f7c65b6"
                         },
                         new
                         {
                             Id = 10,
                             Body = "Exploring new tools for developers.",
-                            CreatedOn = new DateTime(2024, 8, 21, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 21, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             UserProfileId = "b31adf09-b1f4-4f2d-bb02-6d1e9f7c65b6"
                         },
                         new
                         {
                             Id = 11,
                             Body = "Check out the latest design trends.",
-                            CreatedOn = new DateTime(2024, 8, 25, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 25, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             UserProfileId = "4d1cf4a5-4e5d-43d5-bb1d-22a5b0c85dcb"
                         },
                         new
                         {
                             Id = 12,
                             Body = "Redesigned the homepage for a client.",
-                            CreatedOn = new DateTime(2024, 8, 24, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 24, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             UserProfileId = "4d1cf4a5-4e5d-43d5-bb1d-22a5b0c85dcb"
                         },
                         new
                         {
                             Id = 13,
                             Body = "Design tips for creating effective UI.",
-                            CreatedOn = new DateTime(2024, 8, 23, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 23, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             UserProfileId = "4d1cf4a5-4e5d-43d5-bb1d-22a5b0c85dcb"
                         },
                         new
                         {
                             Id = 14,
                             Body = "How to use color theory in design.",
-                            CreatedOn = new DateTime(2024, 8, 22, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 22, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             UserProfileId = "4d1cf4a5-4e5d-43d5-bb1d-22a5b0c85dcb"
                         },
                         new
                         {
                             Id = 15,
                             Body = "Design project management tips.",
-                            CreatedOn = new DateTime(2024, 8, 21, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 21, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             UserProfileId = "4d1cf4a5-4e5d-43d5-bb1d-22a5b0c85dcb"
                         },
                         new
                         {
                             Id = 16,
                             Body = "New marketing strategy launched.",
-                            CreatedOn = new DateTime(2024, 8, 25, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 25, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             UserProfileId = "0f6a348a-760e-4f67-8a72-fb1397b43f23"
                         },
                         new
                         {
                             Id = 17,
                             Body = "Top 5 tips for effective social media marketing.",
-                            CreatedOn = new DateTime(2024, 8, 24, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 24, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             UserProfileId = "0f6a348a-760e-4f67-8a72-fb1397b43f23"
                         },
                         new
                         {
                             Id = 18,
                             Body = "Exploring new digital marketing tools.",
-                            CreatedOn = new DateTime(2024, 8, 23, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 23, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             UserProfileId = "0f6a348a-760e-4f67-8a72-fb1397b43f23"
                         },
                         new
                         {
                             Id = 19,
                             Body = "Analyzing the latest marketing trends.",
-                            CreatedOn = new DateTime(2024, 8, 22, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 22, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             UserProfileId = "0f6a348a-760e-4f67-8a72-fb1397b43f23"
                         },
                         new
                         {
                             Id = 20,
                             Body = "Effective strategies for increasing engagement.",
-                            CreatedOn = new DateTime(2024, 8, 21, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 21, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             UserProfileId = "0f6a348a-760e-4f67-8a72-fb1397b43f23"
                         },
                         new
                         {
                             Id = 21,
                             Body = "Support hours extended this week.",
-                            CreatedOn = new DateTime(2024, 8, 25, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 25, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             UserProfileId = "a87b2e1e-39a4-4fd1-8237-f013f4e9cf6b"
                         },
                         new
                         {
                             Id = 22,
                             Body = "New troubleshooting guide available.",
-                            CreatedOn = new DateTime(2024, 8, 24, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 24, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             UserProfileId = "a87b2e1e-39a4-4fd1-8237-f013f4e9cf6b"
                         },
                         new
                         {
                             Id = 23,
                             Body = "How to resolve common support issues.",
-                            CreatedOn = new DateTime(2024, 8, 23, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 23, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             UserProfileId = "a87b2e1e-39a4-4fd1-8237-f013f4e9cf6b"
                         },
                         new
                         {
                             Id = 24,
                             Body = "Tips for better customer support.",
-                            CreatedOn = new DateTime(2024, 8, 22, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 22, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             UserProfileId = "a87b2e1e-39a4-4fd1-8237-f013f4e9cf6b"
                         },
                         new
                         {
                             Id = 25,
                             Body = "New features in the support portal.",
-                            CreatedOn = new DateTime(2024, 8, 21, 10, 39, 15, 147, DateTimeKind.Utc).AddTicks(3120),
+                            CreatedOn = new DateTime(2024, 8, 21, 10, 22, 54, 139, DateTimeKind.Utc).AddTicks(4220),
                             UserProfileId = "a87b2e1e-39a4-4fd1-8237-f013f4e9cf6b"
                         });
                 });
@@ -937,15 +828,15 @@ namespace dotnet_social_api.Migrations
                             Id = "ed677356-50e3-4640-8077-99db7f391a5b",
                             AccessFailedCount = 0,
                             Bio = "System Administrator",
-                            ConcurrencyStamp = "5a36d751-fd1c-48dc-b591-42bba3d7dd05",
-                            DateJoined = new DateTime(2024, 8, 26, 12, 39, 15, 150, DateTimeKind.Local).AddTicks(8160),
+                            ConcurrencyStamp = "9a75cd59-5f41-461c-b4ea-f8ec78327687",
+                            DateJoined = new DateTime(2024, 8, 26, 12, 22, 54, 142, DateTimeKind.Local).AddTicks(8810),
                             Email = "admin@localhost",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEH7bCKl62vNWoAw65BP0/A3ZG0B+rZLso+K/v3oveN58o6tCgxdOy+uULIdCm3SdRw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDO/JrW4tyojy8Fu4PvAofbJ5eGSgDx4YrTeFgKmRUebZ7m8qMmVdxfx1udJeH64oQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "749dedc7-9613-4c97-b377-cfac40ce6508",
+                            SecurityStamp = "4fb2b885-84c1-4871-95e3-50c7cc5c15e8",
                             TwoFactorEnabled = false,
                             UserName = "Admin",
                             Website = "http://localhost"
@@ -955,15 +846,15 @@ namespace dotnet_social_api.Migrations
                             Id = "b31adf09-b1f4-4f2d-bb02-6d1e9f7c65b6",
                             AccessFailedCount = 0,
                             Bio = "Software Developer",
-                            ConcurrencyStamp = "ce29618a-5400-4208-853a-a6714178a9e8",
-                            DateJoined = new DateTime(2024, 8, 26, 12, 39, 15, 218, DateTimeKind.Local).AddTicks(6710),
+                            ConcurrencyStamp = "6a572f87-15cd-4b7b-aa10-2651be8ce6ab",
+                            DateJoined = new DateTime(2024, 8, 26, 12, 22, 54, 210, DateTimeKind.Local).AddTicks(5620),
                             Email = "devuser@localhost",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "DEVUSER",
-                            PasswordHash = "AQAAAAIAAYagAAAAECoEyNz2Q3/ajEySddmN+KkJVx/i8TALfZ6JJbNJSpCqWM0m06RSySDNBC3SxBD/9w==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEI+CoQ4NoHiCitfSmzHmZ4KfW3uMD7V+C1+tyCHX6u0ZBY81sH+Eb3MGXiBoXUdDHw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "fda591d8-4964-4426-ab57-7ef7e5228182",
+                            SecurityStamp = "8d48e441-7a7f-4f9b-b747-ad0221c05acf",
                             TwoFactorEnabled = false,
                             UserName = "DevUser",
                             Website = "http://devsite.local"
@@ -973,15 +864,15 @@ namespace dotnet_social_api.Migrations
                             Id = "4d1cf4a5-4e5d-43d5-bb1d-22a5b0c85dcb",
                             AccessFailedCount = 0,
                             Bio = "Creative Designer",
-                            ConcurrencyStamp = "6fd1951a-5501-4eae-86e7-5a363e182eb3",
-                            DateJoined = new DateTime(2024, 8, 26, 12, 39, 15, 286, DateTimeKind.Local).AddTicks(3370),
+                            ConcurrencyStamp = "12873df2-fd34-4db5-a13c-d173c7835a94",
+                            DateJoined = new DateTime(2024, 8, 26, 12, 22, 54, 278, DateTimeKind.Local).AddTicks(1100),
                             Email = "designguru@localhost",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "DESIGNGURU",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHnpzvRvC0RmQOtO2KIVTPKJD9i+PMnEyiSg4ZS3wLYMje0i10V7RyODx7X9nndyuw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFaU6dRp/NERIl60rMLQG1oNX9DbfvbRVt6tdCGyqNAGL0qzf+DGs7NhRrwKYL3ZgA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "04fbff62-4743-4b15-b531-5f5482eb6846",
+                            SecurityStamp = "29c88977-344f-4db6-ab32-d02e6fbd01de",
                             TwoFactorEnabled = false,
                             UserName = "DesignGuru",
                             Website = "http://design.local"
@@ -991,15 +882,15 @@ namespace dotnet_social_api.Migrations
                             Id = "0f6a348a-760e-4f67-8a72-fb1397b43f23",
                             AccessFailedCount = 0,
                             Bio = "Marketing Specialist",
-                            ConcurrencyStamp = "f7ab1d65-bc69-4f07-91d1-d16998312bfe",
-                            DateJoined = new DateTime(2024, 8, 26, 12, 39, 15, 353, DateTimeKind.Local).AddTicks(9780),
+                            ConcurrencyStamp = "de688614-3089-4c23-9cf6-381025b16348",
+                            DateJoined = new DateTime(2024, 8, 26, 12, 22, 54, 345, DateTimeKind.Local).AddTicks(6850),
                             Email = "marketer@localhost",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "MARKETER",
-                            PasswordHash = "AQAAAAIAAYagAAAAEExcMta2muW7b/ZyNhYqmo7iNlvGuTx2BnugJEDsI8eBNchDG9Uig3YsUOviGeNNPw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEG59js6gntlZsgGuno/LFxdBrW75CPRfkXonMj1L2qzf0BEEOnsnVHxBeaYI512t0w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b9af436f-24cb-41e0-b949-bbef6e1ea563",
+                            SecurityStamp = "b691d229-5a82-43e7-ba80-11b3dc4c0cfe",
                             TwoFactorEnabled = false,
                             UserName = "Marketer",
                             Website = "http://market.local"
@@ -1009,15 +900,15 @@ namespace dotnet_social_api.Migrations
                             Id = "a87b2e1e-39a4-4fd1-8237-f013f4e9cf6b",
                             AccessFailedCount = 0,
                             Bio = "Customer Support Tech",
-                            ConcurrencyStamp = "91c0e83d-c884-4d10-b66a-3133e13c6a0e",
-                            DateJoined = new DateTime(2024, 8, 26, 12, 39, 15, 421, DateTimeKind.Local).AddTicks(5460),
+                            ConcurrencyStamp = "876b9785-a84a-4f98-a1f9-7ae60d24a01d",
+                            DateJoined = new DateTime(2024, 8, 26, 12, 22, 54, 413, DateTimeKind.Local).AddTicks(2650),
                             Email = "supporttech@localhost",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "SUPPORTTECH",
-                            PasswordHash = "AQAAAAIAAYagAAAAEM5yOokixgf1RK4ztHViVd6CAnfiDFaRPs3P3yj+W6Eydm8EokFUAuSVPuw0XJc+6A==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGxtvKPO47TBToRsaqQZWjNttfZoHEzaq0AtHxrb3+td1zYQLimM702eo78EXDi/lQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8354110c-8f2e-4fbc-82ad-4c99debba112",
+                            SecurityStamp = "bb0ef431-1727-4349-acec-a3b59de94248",
                             TwoFactorEnabled = false,
                             UserName = "SupportTech",
                             Website = "http://support.local"
@@ -1159,19 +1050,11 @@ namespace dotnet_social_api.Migrations
 
             modelBuilder.Entity("dotnet_social_api.Models.Notification", b =>
                 {
-                    b.HasOne("dotnet_social_api.Models.Comment", "Comment")
-                        .WithMany()
-                        .HasForeignKey("CommentId");
-
                     b.HasOne("dotnet_social_api.Models.UserProfile", "FromUserProfile")
                         .WithMany()
                         .HasForeignKey("FromUserProfileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("dotnet_social_api.Models.Post", "Post")
-                        .WithMany()
-                        .HasForeignKey("PostId");
 
                     b.HasOne("dotnet_social_api.Models.UserProfile", "ToUserProfile")
                         .WithMany()
@@ -1179,11 +1062,7 @@ namespace dotnet_social_api.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Comment");
-
                     b.Navigation("FromUserProfile");
-
-                    b.Navigation("Post");
 
                     b.Navigation("ToUserProfile");
                 });
