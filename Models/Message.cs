@@ -11,10 +11,8 @@ public class Message
     public string Body { get; set; } = string.Empty;
     public bool IsSeen { get; set; } = false;
     public DateTime CreatedOn { get; set; } = DateTime.Now;
-    public string ToUserProfileId { get; set; } = string.Empty;
-    public string FromUserProfileId { get; set; } = string.Empty;
-    public UserProfile? ToUserProfile { get; set; }
-    public UserProfile? FromUserProfile { get; set; }
-    public int MessageThreadId { get; set; }
-    public MessageThread? MessageThread { get; set; }
+    public string SenderUserProfileId { get; set; } = string.Empty;
+    public UserProfile? SenderUserProfile { get; set; }
+    public int ThreadId { get; set; }
+    public Thread? Thread { get; set; }
 }

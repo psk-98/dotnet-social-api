@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("dotnet-social-api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d82035d91dd053f2d0b5b5feb9a26370912c56e5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e2e75cf502f52d1325dd8f55002f562678fb8bf7")]
 [assembly: System.Reflection.AssemblyProductAttribute("dotnet-social-api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("dotnet-social-api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
