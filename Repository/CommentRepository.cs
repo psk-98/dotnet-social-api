@@ -60,8 +60,11 @@ public class CommentRepository : ICommentRepository
 
     public async Task<Comment?> GetByIdAsync(int id)
     {
-        return await _context.Comments.Include(a => a.UserProfile).FirstOrDefaultAsync(c => c.Id == id);
+        var comment = await _context.Comments.Include(a => a.UserProfile).FirstOrDefaultAsync(c => c.Id == id);
 
+        if (comment == null) return null;
+
+        return comment;
     }
 
     public async Task<Comment> UpdateAsync(int id, Comment commentModel)

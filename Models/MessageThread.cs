@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace dotnet_social_api.Models
 {
-    public class Thread
+    public class MessageThread
     {
         public int Id { get; set; }
         public string UserOneId { get; set; }

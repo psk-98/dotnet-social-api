@@ -13,6 +13,6 @@ public class Message
     public DateTime CreatedOn { get; set; } = DateTime.Now;
     public string SenderUserProfileId { get; set; } = string.Empty;
     public UserProfile? SenderUserProfile { get; set; }
-    public int ThreadId { get; set; }
-    public Thread? Thread { get; set; }
+    public int MessageThreadId { get; set; }
+    public MessageThread? MessageThread { get; set; }
 }
