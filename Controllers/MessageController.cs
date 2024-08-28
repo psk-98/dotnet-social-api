@@ -2,7 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using dotnet_social_api.Dto.Message;
+using dotnet_social_api.Extensions;
 using dotnet_social_api.Interface;
+using dotnet_social_api.Mappers;
 using dotnet_social_api.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -22,5 +25,15 @@ public class MessageController : ControllerBase
         _userManager = userManager;
     }
 
-    [HttpPost]
+    [HttpPost("{messageThreadId:int}")]
+
+    public async Task<IActionResult> Create([FromRoute] int messageThreadId, CreateMessageDto createMessageDto)
+    {
+        if (!ModelState.IsValid) return BadRequest(ModelState);
+
+        var username = User.GetUsername();
+        var senderUserProfile = await _userManager.FindByNameAsync(username);
+
+        var messageModel = createMessageDto.ToMessageFromCreate(senderUserProfile.Id);
+    }
 }
