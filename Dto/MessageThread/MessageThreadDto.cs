@@ -10,4 +10,5 @@ public class MessageThreadDto
     public int Id { get; set; }
     public List<Message> Messages { get; set; } = new List<Message>();
     public Message? LastMessage { get; set; } = null;
+
 }

@@ -1,3 +1,11 @@
+/home/omen/Documents/web-dev/dotnet-social-api/obj/Debug/net8.0/dotnet-social-api.csproj.AssemblyReference.cache
+/home/omen/Documents/web-dev/dotnet-social-api/obj/Debug/net8.0/dotnet-social-api.GeneratedMSBuildEditorConfig.editorconfig
+/home/omen/Documents/web-dev/dotnet-social-api/obj/Debug/net8.0/dotnet-social-api.AssemblyInfoInputs.cache
+/home/omen/Documents/web-dev/dotnet-social-api/obj/Debug/net8.0/dotnet-social-api.AssemblyInfo.cs
+/home/omen/Documents/web-dev/dotnet-social-api/obj/Debug/net8.0/dotnet-social-api.csproj.CoreCompileInputs.cache
+/home/omen/Documents/web-dev/dotnet-social-api/obj/Debug/net8.0/dotnet-social-api.MvcApplicationPartsAssemblyInfo.cs
+/home/omen/Documents/web-dev/dotnet-social-api/obj/Debug/net8.0/dotnet-social-api.MvcApplicationPartsAssemblyInfo.cache
+/home/omen/Documents/web-dev/dotnet-social-api/obj/Debug/net8.0/dotnet-social-api.sourcelink.json
 /home/omen/Documents/web-dev/dotnet-social-api/bin/Debug/net8.0/appsettings.Development.json
 /home/omen/Documents/web-dev/dotnet-social-api/bin/Debug/net8.0/appsettings.json
 /home/omen/Documents/web-dev/dotnet-social-api/bin/Debug/net8.0/dotnet-social-api
@@ -118,14 +126,6 @@
 /home/omen/Documents/web-dev/dotnet-social-api/bin/Debug/net8.0/runtimes/win-arm64/native/e_sqlite3.dll
 /home/omen/Documents/web-dev/dotnet-social-api/bin/Debug/net8.0/runtimes/win-x64/native/e_sqlite3.dll
 /home/omen/Documents/web-dev/dotnet-social-api/bin/Debug/net8.0/runtimes/win-x86/native/e_sqlite3.dll
-/home/omen/Documents/web-dev/dotnet-social-api/obj/Debug/net8.0/dotnet-social-api.csproj.AssemblyReference.cache
-/home/omen/Documents/web-dev/dotnet-social-api/obj/Debug/net8.0/dotnet-social-api.GeneratedMSBuildEditorConfig.editorconfig
-/home/omen/Documents/web-dev/dotnet-social-api/obj/Debug/net8.0/dotnet-social-api.AssemblyInfoInputs.cache
-/home/omen/Documents/web-dev/dotnet-social-api/obj/Debug/net8.0/dotnet-social-api.AssemblyInfo.cs
-/home/omen/Documents/web-dev/dotnet-social-api/obj/Debug/net8.0/dotnet-social-api.csproj.CoreCompileInputs.cache
-/home/omen/Documents/web-dev/dotnet-social-api/obj/Debug/net8.0/dotnet-social-api.MvcApplicationPartsAssemblyInfo.cs
-/home/omen/Documents/web-dev/dotnet-social-api/obj/Debug/net8.0/dotnet-social-api.MvcApplicationPartsAssemblyInfo.cache
-/home/omen/Documents/web-dev/dotnet-social-api/obj/Debug/net8.0/dotnet-social-api.sourcelink.json
 /home/omen/Documents/web-dev/dotnet-social-api/obj/Debug/net8.0/staticwebassets.build.json
 /home/omen/Documents/web-dev/dotnet-social-api/obj/Debug/net8.0/staticwebassets.development.json
 /home/omen/Documents/web-dev/dotnet-social-api/obj/Debug/net8.0/staticwebassets/msbuild.dotnet-social-api.Microsoft.AspNetCore.StaticWebAssets.props

@@ -21,4 +21,14 @@ public static class ThreadMapper
             LastMessage = threadModel.Messages.LastOrDefault()
         };
     }
+
+    public static MessageThread ToThreadFromCreate(this CreateMessageThreadDto createMessageThreadDto
+    )
+    {
+        return new MessageThread
+        {
+            UserOneId = createMessageThreadDto.UserOneId,
+            UserTwoId = createMessageThreadDto.UserTwoId,
+        };
+    }
 }

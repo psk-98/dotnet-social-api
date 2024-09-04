@@ -54,7 +54,7 @@ public class MessageThreadController : ControllerBase
         var messageThread = await _threadRepo.GetByIdAsync(id);
         if (messageThread == null) return NotFound("Thread not found");
 
-        if (messageThread.UserOneId != loginedInUser.Id || messageThread.UserTwoId != loginedInUser.Id) return Unauthorized();
+        // if (messageThread.UserOneId != loginedInUser.Id || messageThread.UserTwoId != loginedInUser.Id) return Unauthorized();
 
         var threadDto = messageThread.ToThreadDto();
 

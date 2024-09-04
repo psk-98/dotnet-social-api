@@ -10,5 +10,6 @@ namespace dotnet_social_api.Interface
     {
         Task<List<MessageThread>> GetByUserAsync(string userId);
         Task<MessageThread?> GetByIdAsync(int threadId);
+        Task<MessageThread> CreateAsync(MessageThread messageThreadModel);
     }
 }

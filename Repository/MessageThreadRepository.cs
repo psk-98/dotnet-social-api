@@ -16,6 +16,15 @@ public class MessageThreadRepository : IMessageThreadRepository
     {
         _context = context;
     }
+
+    public async Task<MessageThread> CreateAsync(MessageThread messageThreadModel)
+    {
+        await _context.MessageThreads.AddAsync(messageThreadModel);
+        await _context.SaveChangesAsync();
+
+        return messageThreadModel;
+    }
+
     public async Task<MessageThread?> GetByIdAsync(int threadId)
     {
         var thread = await _context.MessageThreads.FirstOrDefaultAsync(t => t.Id == threadId);
