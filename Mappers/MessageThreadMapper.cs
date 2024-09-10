@@ -18,7 +18,7 @@ public static class ThreadMapper
             // Messages = threadModel.Messages.Select(m => m.ToMessageDto()).ToList(),
             // LastMessage = threadModel.Messages.OrderByDescending(m => m.CreatedOn).FirstOrDefault()?.ToMessageDto()
             Messages = threadModel.Messages,
-            LastMessage = threadModel.Messages.LastOrDefault()
+            LastMessage = threadModel.Messages.LastOrDefault().ToMessageDto()
         };
     }
 

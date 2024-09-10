@@ -42,7 +42,7 @@ public static class MessageMapper
             Id = messageModel.Id,
             Body = messageModel.Body,
             CreatedOn = messageModel.CreatedOn,
-            SenderUserProfileId = messageModel.SenderUserProfileId,
+            SenderUserProfile = messageModel.SenderUserProfile.ToUserDto(),
             IsSeen = messageModel.IsSeen,
         };
     }

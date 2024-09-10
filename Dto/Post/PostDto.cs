@@ -11,7 +11,7 @@ public class PostDto
     public int Id { get; set; }
     public string Body { get; set; } = string.Empty;
     public DateTime CreatedOn { get; set; } = DateTime.Now;
-    public string CreatedBy { get; set; }
+    public UserDto CreatedBy { get; set; }
     public int? CommentCount { get; set; }
     public int? LikeCount { get; set; }
 }

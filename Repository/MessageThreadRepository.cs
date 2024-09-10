@@ -27,7 +27,7 @@ public class MessageThreadRepository : IMessageThreadRepository
 
     public async Task<MessageThread?> GetByIdAsync(int threadId)
     {
-        var thread = await _context.MessageThreads.FirstOrDefaultAsync(t => t.Id == threadId);
+        var thread = await _context.MessageThreads.Include(t => t.Messages).FirstOrDefaultAsync(t => t.Id == threadId);
 
         if (thread == null) return null;
 

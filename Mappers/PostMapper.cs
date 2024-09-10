@@ -16,7 +16,7 @@ public static class PostMapper
             Id = postModel.Id,
             Body = postModel.Body,
             CreatedOn = postModel.CreatedOn,
-            CreatedBy = postModel.UserProfile.UserName,
+            CreatedBy = postModel.UserProfile.ToUserDto(),
             LikeCount = likeCount,
             CommentCount = commentCount
 
