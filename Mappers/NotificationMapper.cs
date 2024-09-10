@@ -23,17 +23,16 @@ public static class NotificationMapper
         };
     }
 
-    public static Notification ToNotificationDto(this Notification notificationModel)
+    public static ToNotificationDto ToNotificationDto(this Notification notificationModel)
     {
-        return new Notification
+        return new ToNotificationDto
         {
-            Id = notificationModel.Id,
             Type = notificationModel.Type,
-            CreatedOn = notificationModel.CreatedOn,
             IsSeen = notificationModel.IsSeen,
-            ToUserProfileId = notificationModel.ToUserProfileId,
-            FromUserProfileId = notificationModel.FromUserProfileId
+            // ToUserProfile = notificationModel.ToUserProfile.ToUserDto(),
+            FromUserProfile = notificationModel.FromUserProfile != null ? notificationModel.FromUserProfile.ToUserDto() : null,
+            PostId = notificationModel.PostId,
+            CommentId = notificationModel.CommentId
         };
     }
-
 }

@@ -40,7 +40,7 @@ public class NotificationRepository : INotificationRepository
 
     public async Task<List<Notification>> GetAllAsync(string id, NotificationQueryObject queryObject)
     {
-        var notifications = _context.Notifications.Include(p => p.ToUserProfile).AsQueryable();
+        var notifications = _context.Notifications.Include(p => p.ToUserProfile).Include(p => p.FromUserProfile).AsQueryable();
 
         notifications = notifications.Where(p => p.ToUserProfile.Id == id);
 
