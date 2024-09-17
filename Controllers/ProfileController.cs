@@ -24,13 +24,16 @@ public class ProfileController : ControllerBase
     private readonly ITokenService _tokenService;
     private readonly SignInManager<UserProfile> _signInManager;
     private readonly ApplicationDBContext _context;
+    private readonly IProfilePictureService _profilePictureService;
 
-    public ProfileController(UserManager<UserProfile> userManager, ITokenService tokenService, SignInManager<UserProfile> signInManager, ApplicationDBContext context)
+    public ProfileController(UserManager<UserProfile> userManager, ITokenService tokenService, SignInManager<UserProfile> signInManager, ApplicationDBContext context, IProfilePictureService profilePictureService)
     {
         _userManager = userManager;
         _tokenService = tokenService;
         _signInManager = signInManager;
         _context = context;
+        _profilePictureService = profilePictureService;
+
     }
 
     [HttpPost("register")]
@@ -113,7 +116,7 @@ public class ProfileController : ControllerBase
     }
     [HttpPut("{id}")]
     [Authorize]
-    public async Task<IActionResult> Update([FromRoute] string id, [FromBody] UpdateProfileDto updateDto)
+    public async Task<IActionResult> Update([FromRoute] string id, [FromForm] UpdateProfileDto updateDto)
     {
         if (!ModelState.IsValid) return BadRequest(ModelState);
 
@@ -125,10 +128,23 @@ public class ProfileController : ControllerBase
         //make sure logged in user is updating their profile, you also implement this on the frontend
         if (authorizedUserProfile.Id != id) return Unauthorized();
 
+        string oldImage = userProfile.ProfilePictureName;
+
+        if (updateDto.ProfilePictureFile != null)
+        {
+            if (updateDto.ProfilePictureFile?.Length > 5 * 1024 * 1024) return BadRequest("File size should not exceed 5MB");
+
+            string[] allowedFileExtensions = [".jpg", ".png", ".jpeg"];
+            string createdFileName = await _profilePictureService.SaveFileAsync(updateDto.ProfilePictureFile, allowedFileExtensions);
+            updateDto.ProfilePictureName = createdFileName;
+            _profilePictureService.DeleteFileAsync(oldImage);
+        }
+
         userProfile.UserName = updateDto.Username ?? userProfile.UserName;
         userProfile.Email = updateDto.Email ?? userProfile.Email;
         userProfile.Bio = updateDto.Bio ?? userProfile.Bio;
         userProfile.Website = updateDto.Website ?? userProfile.Website;
+        userProfile.ProfilePictureName = updateDto.ProfilePictureName ?? userProfile.ProfilePictureName;
 
         var updateResult = await _userManager.UpdateAsync(userProfile);
 

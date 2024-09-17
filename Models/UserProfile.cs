@@ -11,4 +11,5 @@ public class UserProfile : IdentityUser
     public string Bio { get; set; } = string.Empty;
     public string Website { get; set; } = string.Empty;
     public DateTime DateJoined { get; set; } = DateTime.Now;
+    public string ProfilePictureName { get; set; } = string.Empty;
 }

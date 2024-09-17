@@ -17,7 +17,8 @@ public static class UserMappers
             Username = userModel.UserName,
             Bio = userModel.Bio,
             Website = userModel.Website,
-            DateJoined = userModel.DateJoined
+            DateJoined = userModel.DateJoined,
+            ProfilePictureName = userModel.ProfilePictureName
         };
     }
 

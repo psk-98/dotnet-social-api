@@ -13,4 +13,5 @@ public class UserDto
     public DateTime DateJoined { get; set; }
     public int Followers { get; set; }
     public int Following { get; set; }
+    public string ProfilePictureName { get; set; }
 }

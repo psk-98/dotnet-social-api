@@ -10,4 +10,6 @@ public class UpdateProfileDto
     public string? Email { get; set; }
     public string? Bio { get; set; }
     public string? Website { get; set; }
+    public string? ProfilePictureName { get; set; }
+    public IFormFile? ProfilePictureFile { get; set; }
 }
