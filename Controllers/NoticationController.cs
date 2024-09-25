@@ -19,10 +19,12 @@ public class NoticationController : ControllerBase
 {
     private readonly INotificationRepository _notificationRepo;
     private readonly UserManager<UserProfile> _userManager;
-    public NoticationController(INotificationRepository notificationRepo, UserManager<UserProfile> userManager)
+    private readonly IImageService _imageService;
+    public NoticationController(INotificationRepository notificationRepo, UserManager<UserProfile> userManager, IImageService imageService)
     {
         _notificationRepo = notificationRepo;
         _userManager = userManager;
+        _imageService = imageService;
     }
 
     [HttpGet]
@@ -35,7 +37,7 @@ public class NoticationController : ControllerBase
         var authorizedUserProfile = await _userManager.FindByNameAsync(username);
 
         var notifications = await _notificationRepo.GetAllAsync(authorizedUserProfile.Id, queryObject);
-        var notifactionDto = notifications.Select(n => n.ToNotificationDto());
+        var notifactionDto = notifications.Select(n => n.ToNotificationDto(_imageService.GetImageBaseUrl()));
 
         return Ok(notifactionDto);
     }
@@ -50,7 +52,7 @@ public class NoticationController : ControllerBase
 
         if (notification == null) return NotFound("Notification does not exist");
 
-        return Ok(notification.ToNotificationDto());
+        return Ok(notification.ToNotificationDto(_imageService.GetImageBaseUrl()));
 
     }
 }

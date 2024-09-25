@@ -20,10 +20,12 @@ public class PostController : ControllerBase
 {
     private readonly IPostRepository _postRepo;
     private readonly UserManager<UserProfile> _userManager;
-    public PostController(IPostRepository postRepo, UserManager<UserProfile> userManager)
+    private readonly IImageService _imageService;
+    public PostController(IPostRepository postRepo, UserManager<UserProfile> userManager, IImageService imageService)
     {
         _postRepo = postRepo;
         _userManager = userManager;
+        _imageService = imageService;
     }
 
     [HttpGet]
@@ -39,7 +41,7 @@ public class PostController : ControllerBase
             var likeCount = await _postRepo.GetLikeCountAsync(p.Id);
 
 
-            return p.ToPostDto(commentCount, likeCount);
+            return p.ToPostDto(commentCount, likeCount, _imageService.GetImageBaseUrl());
         });
         var postsDto = await Task.WhenAll(postDtoTasks);
         return Ok(postsDto);
@@ -56,7 +58,7 @@ public class PostController : ControllerBase
         var commentCount = await _postRepo.GetCommentCountAsync(id);
         var likeCount = await _postRepo.GetLikeCountAsync(id);
 
-        var postDto = post.ToPostDto(commentCount, likeCount);
+        var postDto = post.ToPostDto(commentCount, likeCount, _imageService.GetImageBaseUrl());
 
         return Ok(postDto);
     }
@@ -73,7 +75,7 @@ public class PostController : ControllerBase
         postModel.UserProfileId = userProfile.Id;
         await _postRepo.CreateAsync(postModel);
 
-        return CreatedAtAction(nameof(GetById), new { id = postModel.Id }, postModel.ToPostDto(0, 0));
+        return CreatedAtAction(nameof(GetById), new { id = postModel.Id }, postModel.ToPostDto(0, 0, _imageService.GetImageBaseUrl()));
     }
 
     [HttpPut]
@@ -89,7 +91,7 @@ public class PostController : ControllerBase
         var commentCount = await _postRepo.GetCommentCountAsync(id);
         var likeCount = await _postRepo.GetLikeCountAsync(id);
 
-        return Ok(postModel.ToPostDto(commentCount, likeCount));
+        return Ok(postModel.ToPostDto(commentCount, likeCount, _imageService.GetImageBaseUrl()));
     }
 
     [HttpDelete]

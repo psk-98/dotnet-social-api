@@ -35,14 +35,14 @@ public static class MessageMapper
         };
     }
 
-    public static MessageDto ToMessageDto(this Message messageModel)
+    public static MessageDto ToMessageDto(this Message messageModel, string baseUrl)
     {
         return new MessageDto
         {
             Id = messageModel.Id,
             Body = messageModel.Body,
             CreatedOn = messageModel.CreatedOn,
-            SenderUserProfile = messageModel.SenderUserProfile.ToUserDto(),
+            SenderUserProfile = messageModel.SenderUserProfile.ToUserDto(baseUrl),
             IsSeen = messageModel.IsSeen,
         };
     }

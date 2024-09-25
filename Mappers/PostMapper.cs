@@ -9,14 +9,14 @@ namespace dotnet_social_api.Mappers;
 
 public static class PostMapper
 {
-    public static PostDto ToPostDto(this Post postModel, int commentCount, int likeCount)
+    public static PostDto ToPostDto(this Post postModel, int commentCount, int likeCount, string baseImageUrl)
     {
         return new PostDto
         {
             Id = postModel.Id,
             Body = postModel.Body,
             CreatedOn = postModel.CreatedOn,
-            CreatedBy = postModel.UserProfile != null ? postModel.UserProfile.ToUserDto() : null,
+            CreatedBy = postModel.UserProfile != null ? postModel.UserProfile.ToUserDto(baseImageUrl) : null,
             LikeCount = likeCount,
             CommentCount = commentCount
 

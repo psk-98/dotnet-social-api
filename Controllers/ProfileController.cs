@@ -24,15 +24,16 @@ public class ProfileController : ControllerBase
     private readonly ITokenService _tokenService;
     private readonly SignInManager<UserProfile> _signInManager;
     private readonly ApplicationDBContext _context;
-    private readonly IProfilePictureService _profilePictureService;
+    private readonly IImageService _imageService;
 
-    public ProfileController(UserManager<UserProfile> userManager, ITokenService tokenService, SignInManager<UserProfile> signInManager, ApplicationDBContext context, IProfilePictureService profilePictureService)
+    public ProfileController(UserManager<UserProfile> userManager, ITokenService tokenService, SignInManager<UserProfile> signInManager,
+    ApplicationDBContext context, IImageService imageService)
     {
         _userManager = userManager;
         _tokenService = tokenService;
         _signInManager = signInManager;
         _context = context;
-        _profilePictureService = profilePictureService;
+        _imageService = imageService;
 
     }
 
@@ -91,6 +92,7 @@ public class ProfileController : ControllerBase
 
         return Ok(new NewProfileDto
         {
+            Id = user.Id,
             Username = user.UserName,
             Email = user.Email,
             Token = _tokenService.CreateToken(user)
@@ -105,7 +107,7 @@ public class ProfileController : ControllerBase
         var userProfile = await _userManager.FindByIdAsync(id);
         if (userProfile == null) return NotFound("User not found");
 
-        var userDto = userProfile.ToUserDto();
+        var userDto = userProfile.ToUserDto(_imageService.GetImageBaseUrl());
 
         userDto.Followers = await _context.Follows.CountAsync(f => f.FolloweeUserId == id);
         userDto.Following = await _context.Follows.CountAsync(f => f.FollowerUserId == id);
@@ -135,9 +137,9 @@ public class ProfileController : ControllerBase
             if (updateDto.ProfilePictureFile?.Length > 5 * 1024 * 1024) return BadRequest("File size should not exceed 5MB");
 
             string[] allowedFileExtensions = [".jpg", ".png", ".jpeg"];
-            string createdFileName = await _profilePictureService.SaveFileAsync(updateDto.ProfilePictureFile, allowedFileExtensions);
+            string createdFileName = await _imageService.SaveFileAsync(updateDto.ProfilePictureFile, allowedFileExtensions);
             updateDto.ProfilePictureName = createdFileName;
-            _profilePictureService.DeleteFileAsync(oldImage);
+            _imageService.DeleteFileAsync(oldImage);
         }
 
         userProfile.UserName = updateDto.Username ?? userProfile.UserName;
@@ -150,7 +152,7 @@ public class ProfileController : ControllerBase
 
         if (!updateResult.Succeeded) return StatusCode(StatusCodes.Status500InternalServerError, updateResult.Errors);
 
-        return Ok(userProfile.ToUserDto());
+        return Ok(userProfile.ToUserDto(_imageService.GetImageBaseUrl()));
     }
 
     [HttpDelete("{id}")]

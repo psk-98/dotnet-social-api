@@ -6,13 +6,21 @@ using dotnet_social_api.Interface;
 
 namespace dotnet_social_api.Service;
 
-public class ProfilePictureService(IWebHostEnvironment environment) : IProfilePictureService
+public class ImageService : IImageService
 {
+    private readonly HttpContextAccessor _httpContextAccessor;
+    private readonly IWebHostEnvironment _environment;
+    public ImageService(IWebHostEnvironment environment, HttpContextAccessor httpContextAccessor)
+    {
+        _httpContextAccessor = httpContextAccessor;
+        _environment = environment;
+    }
+
     public void DeleteFileAsync(string fileNameWithExtension)
     {
         if (string.IsNullOrEmpty(fileNameWithExtension)) throw new ArgumentNullException(nameof(fileNameWithExtension));
 
-        var contentPath = environment.ContentRootPath;
+        var contentPath = _environment.ContentRootPath;
         var path = Path.Combine(contentPath, "Assets/img", fileNameWithExtension);
 
         if (!File.Exists(path)) throw new FileNotFoundException("Invalid file path");
@@ -20,11 +28,21 @@ public class ProfilePictureService(IWebHostEnvironment environment) : IProfilePi
         File.Delete(path);
     }
 
+    public string GetImageBaseUrl()
+    {
+        var protocol = _httpContextAccessor.HttpContext.Request.Scheme;
+        var host = _httpContextAccessor.HttpContext.Request.Host;
+        string baseUrl = $"{protocol}://{host}/resources";
+
+        return baseUrl;
+
+    }
+
     public async Task<string> SaveFileAsync(IFormFile file, string[] allowedFileExtensions)
     {
         if (file == null) throw new ArgumentNullException(nameof(file));
 
-        var contentPath = environment.ContentRootPath;
+        var contentPath = _environment.ContentRootPath;
 
         var path = Path.Combine(contentPath, "Assets/img");
         if (!Directory.Exists(path)) Directory.CreateDirectory(path);
@@ -39,4 +57,6 @@ public class ProfilePictureService(IWebHostEnvironment environment) : IProfilePi
 
         return fileName;
     }
+
+
 }

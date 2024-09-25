@@ -23,14 +23,13 @@ public static class NotificationMapper
         };
     }
 
-    public static ToNotificationDto ToNotificationDto(this Notification notificationModel)
+    public static ToNotificationDto ToNotificationDto(this Notification notificationModel, string baseImageUrl)
     {
         return new ToNotificationDto
         {
             Type = notificationModel.Type,
             IsSeen = notificationModel.IsSeen,
-            // ToUserProfile = notificationModel.ToUserProfile.ToUserDto(),
-            FromUserProfile = notificationModel.FromUserProfile != null ? notificationModel.FromUserProfile.ToUserDto() : null,
+            FromUserProfile = notificationModel.FromUserProfile != null ? notificationModel.FromUserProfile.ToUserDto(baseImageUrl) : null,
             PostId = notificationModel.PostId,
             CommentId = notificationModel.CommentId
         };

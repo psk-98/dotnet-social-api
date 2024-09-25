@@ -14,4 +14,5 @@ public class UserDto
     public int Followers { get; set; }
     public int Following { get; set; }
     public string ProfilePictureName { get; set; }
+    public string ProfilePictureUrl { get; set; }
 }

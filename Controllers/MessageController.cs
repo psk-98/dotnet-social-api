@@ -20,11 +20,15 @@ public class MessageController : ControllerBase
     private readonly IMessageRepository _messageRepo;
     private readonly UserManager<UserProfile> _userManager;
     private readonly IMessageThreadRepository _messageThreadRepo;
-    public MessageController(UserManager<UserProfile> userManager, IMessageRepository messageRepo, IMessageThreadRepository messageThreadRepo)
+    private readonly IImageService _imageService;
+
+    public MessageController(UserManager<UserProfile> userManager, IImageService imageService, IMessageRepository messageRepo, IMessageThreadRepository messageThreadRepo)
     {
         _messageRepo = messageRepo;
         _userManager = userManager;
         _messageThreadRepo = messageThreadRepo;
+        _imageService = imageService;
+
     }
 
     [HttpPost]
@@ -68,7 +72,9 @@ public class MessageController : ControllerBase
 
         if (message == null) return NotFound("Message not found");
 
-        return Ok(message.ToMessageDto());
+
+
+        return Ok(message.ToMessageDto(_imageService.GetImageBaseUrl()));
     }
 
     [HttpDelete]

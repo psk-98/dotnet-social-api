@@ -9,7 +9,7 @@ namespace dotnet_social_api.Mappers;
 
 public static class UserMappers
 {
-    public static UserDto ToUserDto(this UserProfile userModel)
+    public static UserDto ToUserDto(this UserProfile userModel, string baseImageUrl)
     {
         return new UserDto
         {
@@ -18,7 +18,8 @@ public static class UserMappers
             Bio = userModel.Bio,
             Website = userModel.Website,
             DateJoined = userModel.DateJoined,
-            ProfilePictureName = userModel.ProfilePictureName
+            ProfilePictureName = userModel.ProfilePictureName,
+            ProfilePictureUrl = $"{baseImageUrl}/{userModel.ProfilePictureName}"
         };
     }
 
